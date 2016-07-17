@@ -1,0 +1,21 @@
+<div layout-padding>
+  <h1 class="md-display-1">UQ Library Membership</h1>
+  <md-divider></md-divider>
+
+  <span class="md-subhead">
+    Become a member of UQ Library by selecting from the list below the
+    type of membership you wish to apply for:
+  </span>
+
+  <div layout="row" layout-sm="column" layout-wrap layout-padding>
+    <div flex="50" ng-repeat="type in vm.membershipTypes">
+      <h2 class="md-headline">{{type.title}}
+        <button class="md-button md-primary" ng-click="doApply(type)">
+          Apply
+          <md-icon class="material-icons apply">keyboard_tab</md-icon>
+        </button>
+      </h2>
+      <span ng-bind-html="type.description" class="md-body-1">{{type.description}}</span>
+    </div>
+  </div>
+</div>
