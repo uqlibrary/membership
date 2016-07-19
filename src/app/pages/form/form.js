@@ -22,6 +22,7 @@
     vm.typeObject = {};
     vm.hospitalData = {};
     vm.reciprocalData = {};
+    vm.cyberschools = [];
 
     /**
      * Helper functions to check the form's type
@@ -52,6 +53,12 @@
         vm.hospitalData = data.hospital;
         vm.reciprocalData = data.reciprocal;
       });
+
+      if (vm.type === 'cyberschool') {
+        MembershipSvc.getCyberschools().then(function (data) {
+          vm.cyberschools = data;
+        });
+      }
     };
 
     vm.init();

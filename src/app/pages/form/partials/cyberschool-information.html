@@ -1,0 +1,53 @@
+<md-card>
+  <md-card-title><h2 class="md-headline">School Information</h2></md-card-title>
+  <md-card-content>
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Phone Number</label>
+        <input type="text" ng-model="vm.form.cyberschoolPhoneNum" ng-required="true" />
+      </md-input-container>
+    </div>
+
+    <div layout="column" layout-gt-xs="row">
+      <md-autocomplete flex="auto" required
+                       md-input-name="cyberschoolAddress_0"
+                       md-selected-item="vm.form.cyberschoolAddress_0"
+                       md-search-text="vm.cyberschoolSearchText"
+                       md-items="item in vm.cyberschools"
+                       md-item-text="item"
+                       md-floating-label="School Name">
+        <md-item-template>
+          <span md-highlight-text="vm.cyberschoolSearchText">{{item}}</span>
+        </md-item-template>
+      </md-autocomplete>
+
+      <md-input-container flex="auto">
+        <label>Year of Enrolment</label>
+        <md-select ng-model="vm.form.cyberschoolEnrolYear" ng-required="true">
+          <md-option value="11">Year 11</md-option>
+          <md-option value="12">Year 12</md-option>
+        </md-select>
+        <div class="md-errors-spacer"></div>
+      </md-input-container>
+    </div>
+
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>School Address line 1</label>
+        <input type="text" ng-model="vm.form.cyberschoolAddress_1" ng-required="true" />
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>School Address line 2</label>
+        <input type="text" ng-model="vm.form.cyberschoolAddress_2" />
+      </md-input-container>
+    </div>
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>School Address line 3</label>
+        <input type="text" ng-model="vm.form.cyberschoolAddress_3" />
+      </md-input-container>
+    </div>
+  </md-card-content>
+</md-card>
