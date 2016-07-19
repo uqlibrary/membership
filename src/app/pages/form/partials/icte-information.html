@@ -1,0 +1,20 @@
+<md-card>
+  <md-card-title><h2 class="md-headline">Student Information</h2></md-card-title>
+  <md-card-content>
+    <!-- ICTE Student Number -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>ICTE Student No.</label>
+        <input type="text" ng-model="vm.form.icteNum" ng-required="true" />
+      </md-input-container>
+    </div>
+
+    <!-- Class -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Class</label>
+        <input type="text" ng-model="vm.form.icteClass" ng-required="true" />
+      </md-input-container>
+    </div>
+  </md-card-content>
+</md-card>

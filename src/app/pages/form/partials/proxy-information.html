@@ -1,0 +1,49 @@
+<md-card>
+  <md-card-title><h2 class="md-headline">Nominated Borrower</h2></md-card-title>
+  <md-card-content>
+    <!-- School -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>School or organisational unit</label>
+        <input type="text" ng-model="vm.form.proxyOrg" ng-required="true" />
+      </md-input-container>
+    </div>
+
+    <!-- Duration From -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Start date of Authorisation - <span class="md-caption">format: DD-MM-YYYY (24-05-1980)</span></label>
+        <input type="text" ng-model="vm.form.proxyDurationFrom" ng-pattern="/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/" />
+      </md-input-container>
+    </div>
+
+    <!-- Duration To -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>End date of Authorisation - <span class="md-caption">format: DD-MM-YYYY (24-05-1980)</span></label>
+        <input type="text" ng-model="vm.form.proxyDurationTo" ng-pattern="/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/" />
+      </md-input-container>
+    </div>
+  </md-card-content>
+</md-card>
+
+<md-card>
+  <md-card-title><h2 class="md-headline">Authorising Borrower</h2></md-card-title>
+  <md-card-content>
+    <!-- Name -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Name</label>
+        <input type="text" ng-model="vm.form.proxyAuthName" ng-required="true" />
+      </md-input-container>
+    </div>
+
+    <!-- School or organisational unit -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>School or organisational unit</label>
+        <input type="text" ng-model="vm.form.proxyAuthOrg" ng-required="true" />
+      </md-input-container>
+    </div>
+  </md-card-content>
+</md-card>
