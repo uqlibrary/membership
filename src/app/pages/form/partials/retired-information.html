@@ -1,0 +1,28 @@
+<md-card>
+  <md-card-title><h2 class="md-headline">UQ Employment Information</h2></md-card-title>
+  <md-card-content>
+    <!-- Retired Staff Position -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Retired Staff Position</label>
+        <input type="text" ng-model="vm.form.retiredPos" ng-required="true" />
+      </md-input-container>
+    </div>
+
+    <!-- Years of service -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Years of Service</label>
+        <input type="text" ng-model="vm.form.retiredYears" ng-required="true" />
+      </md-input-container>
+    </div>
+
+    <!-- Staff number -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Staff Number</label>
+        <input type="text" ng-model="vm.form.retiredNum" ng-required="true" />
+      </md-input-container>
+    </div>
+  </md-card-content>
+</md-card>

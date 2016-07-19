@@ -25,4 +25,15 @@
   font-feature-settings: 'liga';
 }
 
-@import 'app/pages/main';
+h2 {
+  color: #478500;
+  margin: 10px 0 5px 0;
+}
+
+/* Datepicker hack */
+.md-datepicker-button {
+  height: 30px !important;
+}
+
+@import 'app/pages/main/main';
+@import 'app/pages/form/form';

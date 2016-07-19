@@ -11,5 +11,9 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('app', {
       url: '/',
       template: '<app></app>'
+    })
+    .state('form/:type', {
+      url: '/form/:type',
+      template: '<membership-form></membership-form>'
     });
 }

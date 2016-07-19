@@ -1,0 +1,37 @@
+<md-card>
+  <md-card-title><h2 class="md-headline">Employment Information</h2></md-card-title>
+  <md-card-content>
+    <!-- Classification -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Classification</label>
+        <md-select ng-model="vm.form.hospitalClass" ng-required="true">
+          <md-option ng-repeat="c in vm.hospitalData.classifications" value="{{c}}">{{c}}</md-option>
+        </md-select>
+        <div class="md-errors-spacer"></div>
+      </md-input-container>
+    </div>
+
+    <!-- Hospital / Service -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Hospital / Service</label>
+        <md-select ng-model="vm.form.hospitalService" ng-required="true">
+          <md-option ng-repeat="s in vm.hospitalData.services" value="{{s}}">{{s}}</md-option>
+        </md-select>
+        <div class="md-errors-spacer"></div>
+      </md-input-container>
+    </div>
+
+    <!-- Employee Type -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Employee Type</label>
+        <md-select ng-model="vm.form.hospitalEmpType">
+          <md-option ng-repeat="e in vm.hospitalData.types" value="{{e}}">{{e}}</md-option>
+        </md-select>
+        <div class="md-errors-spacer"></div>
+      </md-input-container>
+    </div>
+  </md-card-content>
+</md-card>

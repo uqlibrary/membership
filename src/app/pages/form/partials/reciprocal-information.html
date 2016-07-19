@@ -1,0 +1,23 @@
+<md-card>
+  <md-card-title><h2 class="md-headline">Organisation Information</h2></md-card-title>
+  <md-card-content>
+    <!-- Institution -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Institution</label>
+        <md-select ng-model="vm.form.reciprocalInstitution" ng-required="true">
+          <md-option ng-repeat="r in vm.reciprocalData.institutions" value="{{r}}">{{r}}</md-option>
+        </md-select>
+        <div class="md-errors-spacer"></div>
+      </md-input-container>
+    </div>
+
+    <!-- Student / Staff Library No.-->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Student / Staff Library No.</label>
+        <input type="text" ng-model="vm.form.reciprocalLibNo" ng-required="true" />
+      </md-input-container>
+    </div>
+  </md-card-content>
+</md-card>

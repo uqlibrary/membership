@@ -1,0 +1,26 @@
+<md-card>
+  <md-card-title><h2 class="md-headline">UQ Student Information</h2></md-card-title>
+  <md-card-content>
+    <div layout="column" layout-gt-xs="row">
+      <!-- Previous student number -->
+      <md-input-container flex="auto">
+        <label>Previous Student No. - <span class="md-caption">eg. s1234567</span></label>
+        <input type="text" ng-model="vm.form.alumniNum" ng-required="true" ng-pattern="/^s[0-9]{7}$/" />
+      </md-input-container>
+
+      <!-- Year of Graduation -->
+      <md-input-container flex="auto">
+        <label>Year of Graduation</label>
+        <input type="text" ng-model="vm.form.alumniGraduated" ng-required="true" ng-minlength="2" ng-maxlength="4" />
+      </md-input-container>
+    </div>
+
+    <div layout="row">
+      <!-- Awards -->
+      <md-input-container flex="auto">
+        <label>Alumni awards - <span class="md-caption">for example BSc, DipEd, MA</span></label>
+        <input type="text" ng-model="vm.form.alumniAwards" ng-required="true" />
+      </md-input-container>
+    </div>
+  </md-card-content>
+</md-card>

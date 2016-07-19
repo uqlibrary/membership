@@ -1,0 +1,20 @@
+<md-card>
+  <md-card-title><h2 class="md-headline">Departmental Address (School / Faculty / Institute)</h2></md-card-title>
+  <md-card-content>
+    <!-- Department -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Departmental Address</label>
+        <input type="text" ng-model="vm.form.departamentalAddress" ng-required="true" />
+      </md-input-container>
+    </div>
+
+    <!-- Home Institution -->
+    <div layout="row">
+      <md-input-container flex="100">
+        <label>Home nstitution (if appropriate)</label>
+        <input type="text" ng-model="vm.form.homeInstitution" />
+      </md-input-container>
+    </div>
+  </md-card-content>
+</md-card>

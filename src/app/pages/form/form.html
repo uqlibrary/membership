@@ -1,0 +1,159 @@
+<md-content layout-padding
+    flex="100" flex-gt-md="80" flex-offset-gt-md="10">
+  <h1 class="md-display-1">
+    UQ Library Membership
+    <span class="md-headline">{{vm.typeObject.title}}</span>
+  </h1>
+
+  <!-- Form -->
+  <form>
+    <!-- Conditions -->
+    <md-card ng-show="vm.typeObject.conditions !== ''">
+      <md-card-content>
+        <span class="md-headline" ng-bind-html="vm.typeObject.conditions"></span>
+      </md-card-content>
+    </md-card>
+
+    <!-- Account Information Card -->
+    <md-card>
+      <md-card-title>
+        <h2 class="md-headline">Account Information</h2>
+      </md-card-title>
+      <md-card-content>
+        <div layout="row">
+          <!-- Alumni Period -->
+          <md-input-container flex="100" flex-gt-sm="20" ng-show="vm.isType('alumnifriends') || vm.isType('alumni')">
+            <label>Period</label>
+            <md-select ng-model="vm.form.alumniPeriod" ng-required="true">
+              <md-option ng-repeat="option in vm.typeObject.paymentOptions" value="{{option.code}}">
+                {{option.description}}
+              </md-option>
+            </md-select>
+            <div class="md-errors-spacer"></div> <!-- Bit of a Material hack (display only) -->
+          </md-input-container>
+        </div>
+
+        <div layout="column" layout-gt-sm="row">
+          <!-- Title -->
+          <md-input-container flex="100" flex-gt-sm="20">
+            <label>Title</label>
+            <md-select ng-model="vm.form.title" ng-required="true">
+              <md-option ng-repeat="title in vm.titles" value="{{title}}">{{title}}</md-option>
+            </md-select>
+          </md-input-container>
+
+          <!-- First Name -->
+          <md-input-container flex="100" flex-gt-sm="20">
+            <label>First name</label>
+            <input ng-model="vm.form.firstName" type="text" ng-required="true" />
+          </md-input-container>
+
+          <!-- Surname -->
+          <md-input-container flex="100" flex-gt-sm="20">
+            <label>Last name</label>
+            <input ng-model="vm.form.sn" type="text" ng-required="true" />
+          </md-input-container>
+        </div>
+
+        <div layout="row">
+          <!-- DOB -->
+          <div layout="column" flex>
+            <label class="md-caption">Date of Birth</label>
+            <md-datepicker class="layout-row" flex="100" ng-model="vm.form.dateOfBirth"></md-datepicker>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+
+    <!-- Special Work Address types -->
+    <ng-include src="'app/pages/form/partials/hospital-address.html'" ng-if="vm.isType('hospital')"></ng-include>
+    <ng-include src="'app/pages/form/partials/associate-address.html'" ng-if="vm.isType('associate')"></ng-include>
+    <ng-include src="'app/pages/form/partials/awaitingaurion-address.html'" ng-if="vm.isType('awaitingaurion')"></ng-include>
+    <ng-include src="'app/pages/form/partials/visitors-address.html'" ng-if="vm.isType('visitors')"></ng-include>
+    <ng-include src="'app/pages/form/partials/icte-address.html'" ng-if="vm.isType('icte')"></ng-include>
+
+    <!-- Contact Information Card -->
+    <md-card>
+      <md-card-title><h2 class="md-headline">Contact Information</h2></md-card-title>
+      <md-card-content>
+        <div layout="row">
+          <!-- Email -->
+          <md-input-container flex="auto">
+            <label>Email <span class="md-caption" ng-show="vm.type === 'cyberschool'"> - Your school email address is essential</span></label>
+            <input type="email" ng-model="vm.form.mail" ng-required="true" />
+          </md-input-container>
+
+          <!-- Parent email (cyberschools) -->
+          <md-input-container flex="auto" ng-show="vm.isType('cyberschool')">
+            <label>Parent Email Address</label>
+            <input type="email" ng-model="vm.form.cyberschoolParentMail" ng-required="true" />
+          </md-input-container>
+        </div>
+
+        <!-- Address line 1 -->
+        <div layout="row">
+          <md-input-container flex="100">
+            <label>Home street address number and name - <span class="md-caption">for example, 123 Library Way</span></label>
+            <input type="text" ng-model="vm.form.homeAddress_0" ng-required="true" />
+          </md-input-container>
+        </div>
+
+        <!-- Address line 2 -->
+        <div layout="row">
+          <md-input-container flex="100">
+            <label>Suburb - <span class="md-caption">for example, St Lucia</span></label>
+            <input type="text" ng-model="vm.form.homeAddress_1" ng-required="true" />
+          </md-input-container>
+        </div>
+
+        <div layout="column" layout-gt-xs="row">
+          <!-- City -->
+          <md-input-container flex="100" flex-gt-xs="33">
+            <label>City</label>
+            <input type="text" ng-model="vm.form.homeAddress_city" ng-required="true" />
+          </md-input-container>
+
+          <!-- State -->
+          <md-input-container flex="100" flex-gt-xs="33">
+            <label>State</label>
+            <md-select ng-model="vm.form.homeAddress_state" ng-required="!vm.isType('alumni') && !vm.isType('alumninew')">
+              <md-option value="">State</md-option>
+              <md-option value="ACT">Australian Capital Territory</md-option>
+              <md-option value="NSW">New South Wales</md-option>
+              <md-option value="NT">Northern Territory</md-option>
+              <md-option value="QLD">Queensland</md-option>
+              <md-option value="SA">South Australia</md-option>
+              <md-option value="TAS">Tasmania</md-option>
+              <md-option value="VIC">Victoria</md-option>
+              <md-option value="WA">Western Australia</md-option>
+            </md-select>
+            <div class="md-errors-spacer"></div> <!-- Bit of a Material hack (display only) -->
+          </md-input-container>
+
+          <!-- Postcode -->
+          <md-input-container flex="100" flex-gt-xs="33">
+            <label>Postcode</label>
+            <input type="text"
+                   ng-model="vm.form.homeAddress_postcode"
+                   ng-required="!vm.isType('alumni') && !vm.isType('alumninew')"
+                   ng-pattern="/^[0-9]{4}$/" />
+          </md-input-container>
+        </div>
+
+        <div layout="column" layout-gt-xs="row">
+          <!-- Phone -->
+          <md-input-container flex="auto">
+            <label>Home, work or mobile phone number</label>
+            <input type="text" ng-model="vm.form.phone" ng-required="true" />
+          </md-input-container>
+        </div>
+      </md-card-content>
+    </md-card>
+
+    <!-- More Information Cards -->
+    <ng-include src="'app/pages/form/partials/alumninew-information.html'" ng-if="vm.isType('alumninew')"></ng-include>
+    <ng-include src="'app/pages/form/partials/hospital-information.html'" ng-if="vm.isType('hospital')"></ng-include>
+    <ng-include src="'app/pages/form/partials/retired-information.html'" ng-if="vm.isType('retired')"></ng-include>
+    <ng-include src="'app/pages/form/partials/reciprocal-information.html'" ng-if="vm.isType('reciprocal')"></ng-include>
+  </form>
+</md-content>
