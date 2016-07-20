@@ -158,5 +158,13 @@
     <ng-include src="'app/pages/form/partials/proxy-information.html'" ng-if="vm.isType('proxy')"></ng-include>
     <ng-include src="'app/pages/form/partials/icte-information.html'" ng-if="vm.isType('icte')"></ng-include>
     <ng-include src="'app/pages/form/partials/cyberschool-information.html'" ng-if="vm.isType('cyberschool')"></ng-include>
+
+    <!-- Document Upload -->
+    <md-card ng-if="vm.typeObject.upload">
+      <md-card-title><h2 class="md-headline">Document Upload</h2></md-card-title>
+      <md-card-content>
+
+      </md-card-content>
+    </md-card>
   </form>
 </md-content>

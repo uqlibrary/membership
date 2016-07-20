@@ -7,6 +7,7 @@ var mock = mock || false;
     'ngMaterial',
     'ngCookies',
     'ngSanitize',
+    'ngFileUpload',
 
     /** UQL APP dependencies */
     'uql.app.account',

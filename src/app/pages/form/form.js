@@ -46,6 +46,7 @@
         angular.forEach(data.accountTypes, function (t) {
           if (t.value === vm.type) {
             vm.typeObject = t;
+            console.log(vm.typeObject);
           }
         });
 
