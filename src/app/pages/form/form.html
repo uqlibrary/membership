@@ -170,7 +170,7 @@
             You will be notified by email when your card is ready to collect. </span>
         </p>
         <md-button
-                  class="md-raised md-primary"
+                  class="md-raised md-accent"
                   ngf-multiple="true"
                   ngf-select="vm.addFiles($files)"
                   ngf-pattern="'image/*,application/pdf'"
@@ -210,7 +210,7 @@
 
                   <!-- Error -->
                   <span ng-show="file.upload.status === ''">
-                    <md-icon class="md-icon-error">error</md-icon> Failed
+                    <md-icon class="md-warn">error</md-icon> Failed
                   </span>
                 </td>
               </tr>
