@@ -8,6 +8,7 @@ var mock = mock || false;
     'ngCookies',
     'ngSanitize',
     'ngFileUpload',
+    'md.data.table',
 
     /** UQL APP dependencies */
     'uql.app.account',

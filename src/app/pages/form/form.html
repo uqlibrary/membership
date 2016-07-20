@@ -163,7 +163,95 @@
     <md-card ng-if="vm.typeObject.upload">
       <md-card-title><h2 class="md-headline">Document Upload</h2></md-card-title>
       <md-card-content>
+        <p>
+          <span ng-bind-html="vm.typeObject.upload"></span>
+          <span ng-hide="vm.isType('hospital') || vm.isType('visitors')">If you are unable to upload the documents they will need to be presented in person at one of our
+            <a href="https://web.library.uq.edu.au/locations-hours/service-points" target="_blank">service points</a> when you collect your Library card.
+            You will be notified by email when your card is ready to collect. </span>
+        </p>
+        <md-button
+                  class="md-raised md-primary"
+                  ngf-multiple="true"
+                  ngf-select="vm.addFiles($files)"
+                  ngf-pattern="'image/*,application/pdf'"
+                  ngf-max-size="3MB">Choose files</md-button>
+        <span class="md-caption">Please note: Files must end in .png, .jpeg or .pdf, and be less than 3MB in size.</span>
 
+        <md-table-container ng-show="vm.files.length > 0">
+          <table md-table>
+            <thead md-head>
+              <tr md-row>
+                <th md-column>Name</th>
+                <th md-column>Size</th>
+                <th md-column></th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row ng-repeat="file in vm.files">
+                <td md-cell>{{file.name}}</td>
+                <td md-cell>{{file.size/1024/1024|number:2}}MB</td>
+                <td md-cell>
+                  <!-- Not uploaded -->
+                  <md-button class="md-accent"
+                             ng-show="file.upload.status === '' || file.upload.status === 'error'"
+                             aria-label="Remove file"
+                             ng-click="vm.removeFile($index)">Remove</md-button>
+
+                  <!-- Upload in progress -->
+                  <div layout="row" ng-show="file.upload.status === 'uploading'">
+                    <md-progress-circular md-mode="indeterminate" md-diameter="18"></md-progress-circular>
+                    <span style="padding-left: 10px">Uploading..</span>
+                  </div>
+
+                  <!-- Uploaded -->
+                  <span ng-show="file.upload.status === 'uploaded'">
+                    <md-icon>done</md-icon> Uploaded
+                  </span>
+
+                  <!-- Error -->
+                  <span ng-show="file.upload.status === ''">
+                    <md-icon class="md-icon-error">error</md-icon> Failed
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-button class="md-raised md-primary"
+                   aria-label="Upload files"
+                   ng-click="vm.uploadFiles()"
+                   ng-show="vm.canUploadFiles()">Upload Files</md-button>
+      </md-card-content>
+    </md-card>
+
+    <!-- T&C -->
+    <md-card>
+      <md-card-content class="md-body1">
+        <p><a href="https://web.library.uq.edu.au/contact-us">Contact us</a> if you do not receive the confirmation
+          email or require assistance.</p>
+
+        <p>You may find the Australia Post <a href="http://auspost.com.au/apps/postcode.html">Find a postcode</a> page
+          useful.</p>
+        <p>Your submission of this form indicates your agreement to abide by:</p>
+        <ul>
+          <li>
+            <a href="https://ppl.app.uq.edu.au/content/7.40-library-code-practice" target="_blank">
+              The Library Code of Practice</a>
+          </li>
+          <li>
+            <a href="http://ppl.app.uq.edu.au/content/6.20.01-acceptable-use-uq-ict-resources" target="_blank">
+              The Acceptable Use of UQ ICT Resources</a>
+          </li>
+          <li ng-repeat="item in current.agreement" ng-bind-html="item | unsafe"></li>
+        </ul>
+        <p><b>Privacy statement:</b> The University of Queensland Library only requests and uses personal information
+          for the specific purpose for which it is requested. Your personal information is treated in strict
+          compliance with relevant privacy laws. We disclose personal information with your express consent only, or
+          where required by law. See our
+          <a href="http://ppl.app.uq.edu.au/content/1.60.02-privacy-management">Privacy Management Policy and
+            Procedures</a>
+          for details.</p>
       </md-card-content>
     </md-card>
   </form>

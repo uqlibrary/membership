@@ -16,6 +16,7 @@
 
     vm.type = $stateParams.type;
     vm.form = {};
+    vm.files = [];
 
     // Helper variables
     vm.titles = [];
@@ -23,6 +24,37 @@
     vm.hospitalData = {};
     vm.reciprocalData = {};
     vm.cyberschools = [];
+
+    /**
+     * Adds files to the list
+     * @param files
+     */
+    vm.addFiles = function (files) {
+      angular.forEach(files, function (val) {
+        val.upload = { status: '' };
+        vm.files.push(val);
+      });
+    };
+
+    /**
+     * Whether the user has pending files
+     * @returns {boolean}
+     */
+    vm.canUploadFiles = function () {
+      var uploadable = vm.files.filter(function (val) {
+        return val.hasOwnProperty('upload') && val.upload.status !== 'uploaded'
+      });
+
+      return uploadable.length > 0;
+    };
+
+    /**
+     * Removes a file from the list
+     * @param index
+     */
+    vm.removeFile = function (index) {
+      vm.files.splice(index, 1);
+    };
 
     /**
      * Helper functions to check the form's type
@@ -46,7 +78,6 @@
         angular.forEach(data.accountTypes, function (t) {
           if (t.value === vm.type) {
             vm.typeObject = t;
-            console.log(vm.typeObject);
           }
         });
 
