@@ -9,6 +9,7 @@ var mock = mock || false;
     'ngSanitize',
     'ngFileUpload',
     'md.data.table',
+    'ngLodash',
 
     /** UQL APP dependencies */
     'uql.app.account',

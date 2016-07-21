@@ -209,7 +209,7 @@
                   </span>
 
                   <!-- Error -->
-                  <span ng-show="file.upload.status === ''">
+                  <span ng-show="file.upload.status === 'error'">
                     <md-icon class="md-warn">error</md-icon> Failed
                   </span>
                 </td>
@@ -221,7 +221,7 @@
         <md-button class="md-raised md-primary"
                    aria-label="Upload files"
                    ng-click="vm.uploadFiles()"
-                   ng-show="vm.canUploadFiles()">Upload Files</md-button>
+                   ng-show="vm.canUploadFiles()">Upload File(s)</md-button>
       </md-card-content>
     </md-card>
 
@@ -252,6 +252,9 @@
           <a href="http://ppl.app.uq.edu.au/content/1.60.02-privacy-management">Privacy Management Policy and
             Procedures</a>
           for details.</p>
+
+        <!-- Submit -->
+        <md-button class="md-accent md-raised" ng-click="vm.submit()">Apply for membership</md-button>
       </md-card-content>
     </md-card>
   </form>

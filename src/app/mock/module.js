@@ -97,5 +97,9 @@
       .respond(200, MembershipMockData.renew);
 
     $httpBackend.whenGET().passThrough();
+
+    // File uploads
+    var fileResponse = [{"key":"613d0f00-4ee1-11e6-8b92-759f374d1f6b.png","type":"image\/png","name":"some-upload.png","size":166365}];
+    $httpBackend.whenPOST(UQL_APP_CONFIG.apiUrl + 'file/membership').respond(200, fileResponse);
   }
 })();

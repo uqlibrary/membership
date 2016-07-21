@@ -11,11 +11,13 @@
       });
 
   /** @ngInject **/
-  function MembershipFormController(MembershipSvc, $stateParams) {
+  function MembershipFormController(MembershipSvc, $stateParams, UQL_APP_CONFIG, lodash, UploadBase) {
     var vm = this;
 
     vm.type = $stateParams.type;
-    vm.form = {};
+    vm.form = {
+      attachments: []
+    };
     vm.files = [];
 
     // Helper variables
@@ -46,6 +48,38 @@
       });
 
       return uploadable.length > 0;
+    };
+
+    vm.uploadFiles = function () {
+      if (vm.files.length === 0) return false;
+
+      lodash.forEach(vm.files, function (file, index) {
+        if (file.upload.status === 'uploaded') {
+          return;
+        }
+        vm.uploadFile(index);
+      });
+    };
+
+    /**
+     * Uploads a single file
+     * @param index
+     */
+    vm.uploadFile = function (index) {
+      var file = vm.files[index];
+      file.upload.status = 'uploading';
+
+      UploadBase.upload({
+        url: UQL_APP_CONFIG.apiUrl + 'file/membership',
+        method: 'POST',
+        data: {},
+        file: file
+      }).success(function (data) {
+        file.upload.status = 'uploaded';
+        vm.form.attachments.push(data[0]);
+      }).error(function () {
+        file.upload.status = 'failed';
+      });
     };
 
     /**
