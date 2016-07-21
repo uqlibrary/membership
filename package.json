@@ -40,7 +40,9 @@
     "wiredep": "^2.2.2",
     "eslint": "^2.11.0",
     "eslint-config-xo-space": "^0.12.0",
-    "gulp-eslint": "^2.0.0"
+    "gulp-eslint": "^2.0.0",
+    "gulp-protractor": "^2.4.0",
+    "sauce-connect-launcher": "^0.15.1"
   },
   "scripts": {
     "build": "gulp",
