@@ -26,6 +26,8 @@
     vm.hospitalData = {};
     vm.reciprocalData = {};
     vm.cyberschools = [];
+    vm.isSubmitting = false;
+    vm.isRenewing = false;
 
     /**
      * Adds files to the list
@@ -97,6 +99,15 @@
      */
     vm.isType = function (type) {
       return vm.type === type;
+    };
+
+    /**
+     * @description The text to display on the submit button
+     * @returns {String}
+     */
+    vm.submitLabel = function () {
+      if (vm.isRenewing) return vm.isSubmitting ? 'Renewing..' : 'Renew membership';
+      else return vm.isSubmitting ? 'Applying..' : 'Apply for membership';
     };
 
     vm.submit = function () {
