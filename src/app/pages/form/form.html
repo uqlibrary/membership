@@ -6,9 +6,9 @@
   </h1>
 
   <!-- Form -->
-  <form>
+  <form name="vm.formController">
     <!-- Conditions -->
-    <md-card ng-show="vm.typeObject.conditions !== ''">
+    <md-card ng-if="vm.typeObject.conditions !== ''">
       <md-card-content>
         <span class="md-headline" ng-bind-html="vm.typeObject.conditions"></span>
       </md-card-content>
@@ -22,9 +22,9 @@
       <md-card-content>
         <div layout="row">
           <!-- Alumni Period -->
-          <md-input-container flex="100" flex-gt-sm="20" ng-show="vm.isType('alumnifriends') || vm.isType('alumni')">
+          <md-input-container flex="100" flex-gt-sm="20" ng-if="vm.isType('alumni') || vm.isType('alumnifriends')">
             <label>Period</label>
-            <md-select ng-model="vm.form.alumniPeriod" ng-required="true">
+            <md-select ng-model="vm.form.paymentCode" ng-required="true" name="paymentCode">
               <md-option ng-repeat="option in vm.typeObject.paymentOptions" value="{{option.code}}">
                 {{option.description}}
               </md-option>
@@ -37,7 +37,7 @@
           <!-- Title -->
           <md-input-container flex="100" flex-gt-sm="20">
             <label>Title</label>
-            <md-select ng-model="vm.form.title" ng-required="true">
+            <md-select ng-model="vm.form.title" ng-required="true" name="title">
               <md-option ng-repeat="title in vm.titles" value="{{title}}">{{title}}</md-option>
             </md-select>
           </md-input-container>
@@ -45,13 +45,13 @@
           <!-- First Name -->
           <md-input-container flex="100" flex-gt-sm="20">
             <label>First name</label>
-            <input ng-model="vm.form.firstName" type="text" ng-required="true" />
+            <input ng-model="vm.form.firstName" type="text" ng-required="true" name="firstName" />
           </md-input-container>
 
           <!-- Surname -->
           <md-input-container flex="100" flex-gt-sm="20">
             <label>Last name</label>
-            <input ng-model="vm.form.sn" type="text" ng-required="true" />
+            <input ng-model="vm.form.sn" type="text" ng-required="true" name="sn" />
           </md-input-container>
         </div>
 
@@ -59,7 +59,7 @@
           <!-- DOB -->
           <div layout="column" flex>
             <label class="md-caption">Date of Birth</label>
-            <md-datepicker class="layout-row" flex="100" ng-model="vm.form.dateOfBirth"></md-datepicker>
+            <md-datepicker class="layout-row" flex="100" ng-model="vm.form.dateOfBirth" name="dob"></md-datepicker>
           </div>
         </div>
       </md-card-content>
@@ -80,13 +80,13 @@
           <!-- Email -->
           <md-input-container flex="auto">
             <label>Email <span class="md-caption" ng-show="vm.type === 'cyberschool'"> - Your school email address is essential</span></label>
-            <input type="email" ng-model="vm.form.mail" ng-required="true" />
+            <input type="email" ng-model="vm.form.mail" ng-required="true" name="email" />
           </md-input-container>
 
           <!-- Parent email (cyberschools) -->
-          <md-input-container flex="auto" ng-show="vm.isType('cyberschool')">
+          <md-input-container flex="auto" ng-if="vm.isType('cyberschool')">
             <label>Parent Email Address</label>
-            <input type="email" ng-model="vm.form.cyberschoolParentMail" ng-required="true" />
+            <input type="email" ng-model="vm.form.cyberschoolParentMail" ng-required="true" name="cyberschoolParentMail" />
           </md-input-container>
         </div>
 
@@ -94,7 +94,7 @@
         <div layout="row">
           <md-input-container flex="100">
             <label>Home street address number and name - <span class="md-caption">for example, 123 Library Way</span></label>
-            <input type="text" ng-model="vm.form.homeAddress_0" ng-required="true" />
+            <input type="text" ng-model="vm.form.homeAddress_0" ng-required="true" name="homeAddress_0" />
           </md-input-container>
         </div>
 
@@ -102,7 +102,7 @@
         <div layout="row">
           <md-input-container flex="100">
             <label>Suburb - <span class="md-caption">for example, St Lucia</span></label>
-            <input type="text" ng-model="vm.form.homeAddress_1" ng-required="true" />
+            <input type="text" ng-model="vm.form.homeAddress_1" ng-required="true" name="homeAddress_1" />
           </md-input-container>
         </div>
 
@@ -110,13 +110,13 @@
           <!-- City -->
           <md-input-container flex="100" flex-gt-xs="33">
             <label>City</label>
-            <input type="text" ng-model="vm.form.homeAddress_city" ng-required="true" />
+            <input type="text" ng-model="vm.form.homeAddress_city" ng-required="true" name="homeAddress_city" />
           </md-input-container>
 
           <!-- State -->
           <md-input-container flex="100" flex-gt-xs="33">
             <label>State</label>
-            <md-select ng-model="vm.form.homeAddress_state" ng-required="!vm.isType('alumni') && !vm.isType('alumninew')">
+            <md-select ng-model="vm.form.homeAddress_state" ng-required="!vm.isType('alumni') && !vm.isType('alumninew')" name="homeAddress_state">
               <md-option value="">State</md-option>
               <md-option value="ACT">Australian Capital Territory</md-option>
               <md-option value="NSW">New South Wales</md-option>
@@ -134,6 +134,7 @@
           <md-input-container flex="100" flex-gt-xs="33">
             <label>Postcode</label>
             <input type="text"
+                   name="homeAddress_postcode"
                    ng-model="vm.form.homeAddress_postcode"
                    ng-required="!vm.isType('alumni') && !vm.isType('alumninew')"
                    ng-pattern="/^[0-9]{4}$/" />
@@ -144,7 +145,7 @@
           <!-- Phone -->
           <md-input-container flex="auto">
             <label>Home, work or mobile phone number</label>
-            <input type="text" ng-model="vm.form.phone" ng-required="true" />
+            <input type="text" ng-model="vm.form.phone" ng-required="true" name="phone" />
           </md-input-container>
         </div>
       </md-card-content>
@@ -255,6 +256,7 @@
 
         <!-- Submit -->
         <md-button class="md-accent md-raised" ng-click="vm.submit()">{{vm.submitLabel()}}</md-button>
+        <span class="md-error" ng-show="vm.formController.$invalid">Some fields are either missing or invalid. Please review the fields highlighted in red above.</span>
       </md-card-content>
     </md-card>
   </form>

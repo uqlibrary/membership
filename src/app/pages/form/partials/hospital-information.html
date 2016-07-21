@@ -5,7 +5,7 @@
     <div layout="row">
       <md-input-container flex="100">
         <label>Classification</label>
-        <md-select ng-model="vm.form.hospitalClass" ng-required="true">
+        <md-select ng-model="vm.form.hospitalClass" ng-required="true" name="hospitalClass">
           <md-option ng-repeat="c in vm.hospitalData.classifications" value="{{c}}">{{c}}</md-option>
         </md-select>
         <div class="md-errors-spacer"></div>
@@ -16,7 +16,7 @@
     <div layout="row">
       <md-input-container flex="100">
         <label>Hospital / Service</label>
-        <md-select ng-model="vm.form.hospitalService" ng-required="true">
+        <md-select ng-model="vm.form.hospitalService" ng-required="true" name="hospitalService">
           <md-option ng-repeat="s in vm.hospitalData.services" value="{{s}}">{{s}}</md-option>
         </md-select>
         <div class="md-errors-spacer"></div>
@@ -27,7 +27,7 @@
     <div layout="row">
       <md-input-container flex="100">
         <label>Employee Type</label>
-        <md-select ng-model="vm.form.hospitalEmpType">
+        <md-select ng-model="vm.form.hospitalEmpType" name="hospitalEmpType">
           <md-option ng-repeat="e in vm.hospitalData.types" value="{{e}}">{{e}}</md-option>
         </md-select>
         <div class="md-errors-spacer"></div>

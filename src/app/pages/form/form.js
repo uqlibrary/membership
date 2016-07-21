@@ -28,6 +28,7 @@
     vm.cyberschools = [];
     vm.isSubmitting = false;
     vm.isRenewing = false;
+    vm.errorList = [];
 
     /**
      * Adds files to the list
@@ -35,7 +36,7 @@
      */
     vm.addFiles = function (files) {
       angular.forEach(files, function (val) {
-        val.upload = { status: '' };
+        val.upload = {status: ''};
         vm.files.push(val);
       });
     };
@@ -46,14 +47,20 @@
      */
     vm.canUploadFiles = function () {
       var uploadable = vm.files.filter(function (val) {
-        return val.hasOwnProperty('upload') && val.upload.status !== 'uploaded'
+        return val.hasOwnProperty('upload') && val.upload.status !== 'uploaded';
       });
 
       return uploadable.length > 0;
     };
 
+    /**
+     * Uploads files to uqlapp
+     * @returns {boolean}
+     */
     vm.uploadFiles = function () {
-      if (vm.files.length === 0) return false;
+      if (vm.files.length === 0) {
+        return false;
+      }
 
       lodash.forEach(vm.files, function (file, index) {
         if (file.upload.status === 'uploaded') {
@@ -106,12 +113,45 @@
      * @returns {String}
      */
     vm.submitLabel = function () {
-      if (vm.isRenewing) return vm.isSubmitting ? 'Renewing..' : 'Renew membership';
-      else return vm.isSubmitting ? 'Applying..' : 'Apply for membership';
+      var r = '';
+      if (vm.isRenewing) {
+        r = vm.isSubmitting ? 'Renewing..' : 'Renew membership';
+      } else {
+        r = vm.isSubmitting ? 'Applying..' : 'Apply for membership';
+      }
+
+      return r;
     };
 
+    /**
+     * Submits the membership application / renewal
+     */
     vm.submit = function () {
-      // Changed model for alumniPeriod to alumnifriendshipLevel if needed (isType('alumnifriends'))
+      lodash.forEach(vm.formController.$error.required, function (i) {
+        console.log(i.$name);
+      });
+      vm.formController.$setSubmitted();
+      vm.isSubmitting = true;
+
+      if (vm.isType('community')) {
+        vm.form.paymentCode = vm.typeObject.paymentOptions[0].code;
+      }
+
+      var promise;
+      if (vm.form.status && vm.form.status === 'renewing') {
+        promise = MembershipSvc.renew(vm.form);
+      } else {
+        promise = MembershipSvc.submit(vm.form);
+      }
+
+      promise.then(function (response) {
+        console.log("SUCCESS", response);
+        vm.isSubmitting = false;
+      }, function (errors) {
+        console.log("ERROR", errors);
+        vm.isSubmitting = false;
+        vm.errorList = errors;
+      });
     };
 
     /**

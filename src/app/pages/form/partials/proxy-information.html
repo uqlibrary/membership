@@ -5,7 +5,7 @@
     <div layout="row">
       <md-input-container flex="100">
         <label>School or organisational unit</label>
-        <input type="text" ng-model="vm.form.proxyOrg" ng-required="true" />
+        <input type="text" ng-model="vm.form.proxyOrg" ng-required="true" name="proxyOrg" />
       </md-input-container>
     </div>
 
@@ -13,7 +13,7 @@
     <div layout="row">
       <md-input-container flex="100">
         <label>Start date of Authorisation - <span class="md-caption">format: DD-MM-YYYY (24-05-1980)</span></label>
-        <input type="text" ng-model="vm.form.proxyDurationFrom" ng-pattern="/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/" />
+        <input type="text" ng-model="vm.form.proxyDurationFrom" ng-pattern="/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/" name="proxyDurationFrom" />
       </md-input-container>
     </div>
 
@@ -21,7 +21,7 @@
     <div layout="row">
       <md-input-container flex="100">
         <label>End date of Authorisation - <span class="md-caption">format: DD-MM-YYYY (24-05-1980)</span></label>
-        <input type="text" ng-model="vm.form.proxyDurationTo" ng-pattern="/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/" />
+        <input type="text" ng-model="vm.form.proxyDurationTo" ng-pattern="/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/" name="proxyDurationTo" />
       </md-input-container>
     </div>
   </md-card-content>
@@ -34,7 +34,7 @@
     <div layout="row">
       <md-input-container flex="100">
         <label>Name</label>
-        <input type="text" ng-model="vm.form.proxyAuthName" ng-required="true" />
+        <input type="text" ng-model="vm.form.proxyAuthName" ng-required="true" name="proxyAuthName" />
       </md-input-container>
     </div>
 
@@ -42,7 +42,7 @@
     <div layout="row">
       <md-input-container flex="100">
         <label>School or organisational unit</label>
-        <input type="text" ng-model="vm.form.proxyAuthOrg" ng-required="true" />
+        <input type="text" ng-model="vm.form.proxyAuthOrg" ng-required="true" name="proxyAuthOrg" />
       </md-input-container>
     </div>
   </md-card-content>

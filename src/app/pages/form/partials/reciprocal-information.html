@@ -5,7 +5,7 @@
     <div layout="row">
       <md-input-container flex="100">
         <label>Institution</label>
-        <md-select ng-model="vm.form.reciprocalInstitution" ng-required="true">
+        <md-select ng-model="vm.form.reciprocalInstitution" ng-required="true" name="reciprocalInstitution">
           <md-option ng-repeat="r in vm.reciprocalData.institutions" value="{{r}}">{{r}}</md-option>
         </md-select>
         <div class="md-errors-spacer"></div>
@@ -16,7 +16,7 @@
     <div layout="row">
       <md-input-container flex="100">
         <label>Student / Staff Library No.</label>
-        <input type="text" ng-model="vm.form.reciprocalLibNo" ng-required="true" />
+        <input type="text" ng-model="vm.form.reciprocalLibNo" ng-required="true" name="reciprocalLibNo" />
       </md-input-container>
     </div>
   </md-card-content>
