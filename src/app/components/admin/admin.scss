@@ -1,0 +1,37 @@
+membership-admin {
+  section.search-section {
+    md-content {
+      md-input-container {
+        margin-bottom: 0;
+      }
+
+      .search-container {
+        padding: 14px;
+
+        .search-button {
+          padding-right: 10px;
+
+          .search-icon {
+            font-size: 20px;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  section.result-section {
+    margin-top: 10px;
+    padding: 0;
+
+    md-tabs {
+      md-icon.tab-icon {
+        cursor: pointer;
+
+        &:hover {
+          color: #444 !important;
+        }
+      }
+    }
+  }
+}

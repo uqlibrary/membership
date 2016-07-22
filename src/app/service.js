@@ -8,8 +8,8 @@
   'use strict';
 
   angular.module('app')
-    .factory('MembershipSvc', ['$http', '$q', '$log', '$timeout', 'UQL_APP_CONFIG',
-      function ($http, $q, $log, $timeout, UQL_APP_CONFIG) {
+    .factory('MembershipSvc', ['$http', '$q', '$log', '$timeout', 'UQL_APP_CONFIG', 'lodash',
+      function ($http, $q, $log, $timeout, UQL_APP_CONFIG, lodash) {
         var api = UQL_APP_CONFIG.apiUrl + 'membership';
         var memberships = {};
         var types = [];
@@ -335,6 +335,16 @@
           return tracker;
         };
 
+        var isAdmin = function (account) {
+          var admin = false;
+          lodash.forEach(account.groups, function (val) {
+            if (val === 'CN=lib_staff,OU=LIB-groups,OU=University of Queensland Library,OU=Deputy Vice-Chancellor (Academic),OU=Vice-Chancellor,DC=uq,DC=edu,DC=au') {
+              admin = true;
+            }
+          });
+          return admin;
+        };
+
         // Public API
         return {
           get: get,
@@ -351,7 +361,8 @@
           getMemberships: getMemberships,
           updateType: updateType,
           getTypes: getTypes,
-          getTracker: getTracker
+          getTracker: getTracker,
+          isAdmin: isAdmin
         };
       }]);
 })();

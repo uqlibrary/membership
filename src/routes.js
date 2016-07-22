@@ -19,5 +19,9 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('received', {
       url: '/received/:id',
       template: '<membership-received></membership-received>'
+    })
+    .state('admin', {
+      url: '/admin',
+      template: '<membership-admin></membership-admin>'
     });
 }

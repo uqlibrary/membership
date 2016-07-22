@@ -8,7 +8,7 @@
   display: inline-block;
   width: 1em;
   height: 1em;
-  line-height: 1;
+  line-height: 24px;
   text-transform: none;
   letter-spacing: normal;
   word-wrap: normal;
@@ -39,5 +39,10 @@ h2 {
   color: #FF3A11;
 }
 
+.app-container {
+  min-height: calc(100% - 488px);
+}
+
 @import 'app/components/main/main';
 @import 'app/components/form/form';
+@import 'app/components/admin/admin';

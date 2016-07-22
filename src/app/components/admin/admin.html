@@ -1,0 +1,52 @@
+<md-content layout-padding>
+  <h1 class="md-display-1">UQ Library Membership <span class="md-headline">Admin</span></h1>
+
+  <span class="md-error" ng-if="!vm.isAllowed">
+    You do not have permission to access this resource.
+  </span>
+
+  <section class="search-section" md-whiteframe ng-if="vm.isAllowed">
+    <md-content layout="row">
+      <md-input-container flex="auto">
+        <label>Name</label>
+        <input type="text" ng-model="vm.search.name" />
+      </md-input-container>
+
+      <md-input-container flex="auto">
+        <label>Account type</label>
+        <md-select ng-model="vm.search.accountType">
+          <md-option selected="selected">All</md-option>
+          <md-option ng-repeat="i in vm.accountTypes | orderBy:'title'" value="{{i.value}}">{{i.title}}</md-option>
+        </md-select>
+        <div class="md-errors-spacer"></div> <!-- Bit of a Material hack (display only) -->
+      </md-input-container>
+
+      <div flex="1" class="search-container">
+        <md-button class="md-accent md-raised search-button">
+          <md-icon class="search-icon">search</md-icon> Search
+        </md-button>
+      </div>
+    </md-content>
+  </section>
+
+  <section class="result-section" md-whiteframe>
+    <md-content layout-fill>
+      <md-tabs md-selected="vm.selectedTabIndex" md-dynamic-height class="md-accent">
+        <md-tab>
+          <md-tab-label>
+            Search results (101)
+          </md-tab-label>
+          Bla bla bla
+        </md-tab>
+        <md-tab ng-repeat="user in vm.openUsers">
+          <md-tab-label>
+            {{user.name}}
+            <md-icon class="tab-icon" ng-click="vm.removeTab($index)">clear</md-icon>
+          </md-tab-label>
+          Lalalala
+        </md-tab>
+      </md-tabs>
+    </md-content>
+  </section>
+
+</md-content>
