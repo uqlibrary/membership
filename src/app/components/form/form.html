@@ -254,7 +254,13 @@
           for details.</p>
 
         <!-- Submit -->
-        <md-button class="md-accent md-raised" ng-click="vm.submit()" id="submitMembership">{{vm.submitLabel()}}</md-button>
+        <md-button
+            class="md-accent md-raised"
+            ng-click="vm.submit()"
+            ng-disabled="vm.formController.$invalid"
+            id="submitMembership">
+          {{vm.submitLabel()}}
+        </md-button>
         <span class="md-error" ng-show="vm.formController.$invalid">Some fields are either missing or invalid. Please review the fields highlighted in red above.</span>
       </md-card-content>
     </md-card>

@@ -11,7 +11,7 @@
       });
 
   /** @ngInject **/
-  function MembershipFormController(MembershipSvc, $stateParams, UQL_APP_CONFIG, lodash, UploadBase) {
+  function MembershipFormController(MembershipSvc, $stateParams, UQL_APP_CONFIG, lodash, UploadBase, $state) {
     var vm = this;
 
     vm.type = $stateParams.type;
@@ -145,10 +145,9 @@
       }
 
       promise.then(function (response) {
-        console.log("SUCCESS", response);
+        $state.go('received', {id: response.id});
         vm.isSubmitting = false;
       }, function (errors) {
-        console.log("ERROR", errors);
         vm.isSubmitting = false;
         vm.errorList = errors;
       });
