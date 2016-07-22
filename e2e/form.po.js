@@ -60,6 +60,26 @@ var FormPage = function() {
   this.form.hospitalService = this.form.all(by.model('vm.form.hospitalService')).get(0);
   this.form.hospitalEmpType = this.form.all(by.model('vm.form.hospitalEmpType')).get(0);
 
+  // Proxy
+  this.form.proxyOrg = this.form.element(by.model('vm.form.proxyOrg'));
+  this.form.proxyDurationFrom = this.form.element(by.model('vm.form.proxyDurationFrom'));
+  this.form.proxyDurationTo = this.form.element(by.model('vm.form.proxyDurationTo'));
+  this.form.proxyAuthName = this.form.element(by.model('vm.form.proxyAuthName'));
+  this.form.proxyAuthOrg = this.form.element(by.model('vm.form.proxyAuthOrg'));
+
+  // Reciprocal
+  this.form.reciprocalInstitution = this.form.all(by.model('vm.form.reciprocalInstitution')).get(0);
+  this.form.reciprocalLibNo = this.form.element(by.model('vm.form.reciprocalLibNo'));
+
+  // Retired
+  this.form.retiredPos = this.form.element(by.model('vm.form.retiredPos'));
+  this.form.retiredYears = this.form.element(by.model('vm.form.retiredYears'));
+  this.form.retiredNum = this.form.element(by.model('vm.form.retiredNum'));
+
+  // Visitors
+  this.form.departamentalAddress = this.form.element(by.model('vm.form.departamentalAddress'));
+  this.form.homeInstitution = this.form.element(by.model('vm.form.homeInstitution'));
+
   // General items
   this.form.helpContent = this.form.element(by.css('#helpContent'));
   this.form.submitButton = this.form.element(by.css('#submitMembership'));
