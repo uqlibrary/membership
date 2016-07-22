@@ -10,6 +10,7 @@ var mock = mock || false;
     'ngFileUpload',
     'md.data.table',
     'ngLodash',
+    'angularMoment',
 
     /** UQL APP dependencies */
     'uql.app.account',
@@ -26,7 +27,7 @@ var mock = mock || false;
   angular.module('app').config(appConfig);
 
   /** @ngInject */
-  function appConfig($mdThemingProvider) {
+  function appConfig($mdThemingProvider, $mdDateLocaleProvider, moment) {
     var uqPurple = $mdThemingProvider.extendPalette('deep-purple', {
       300: '#d2c1d7',
       400: '#6B0C8A',
@@ -46,5 +47,9 @@ var mock = mock || false;
     $mdThemingProvider.theme('default')
       .primaryPalette('uqPurple')
       .accentPalette('uqBlue');
+
+    $mdDateLocaleProvider.formatDate = function (date) {
+      return moment(date).format('YYYY-MM-DD');
+    };
   }
 })();
