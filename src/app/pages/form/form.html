@@ -227,7 +227,7 @@
     </md-card>
 
     <!-- T&C -->
-    <md-card>
+    <md-card id="helpContent">
       <md-card-content class="md-body1">
         <p><a href="https://web.library.uq.edu.au/contact-us">Contact us</a> if you do not receive the confirmation
           email or require assistance.</p>
@@ -255,7 +255,7 @@
           for details.</p>
 
         <!-- Submit -->
-        <md-button class="md-accent md-raised" ng-click="vm.submit()">{{vm.submitLabel()}}</md-button>
+        <md-button class="md-accent md-raised" ng-click="vm.submit()" id="submitMembership">{{vm.submitLabel()}}</md-button>
         <span class="md-error" ng-show="vm.formController.$invalid">Some fields are either missing or invalid. Please review the fields highlighted in red above.</span>
       </md-card-content>
     </md-card>
