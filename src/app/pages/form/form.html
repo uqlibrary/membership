@@ -152,6 +152,7 @@
     </md-card>
 
     <!-- More Information Cards -->
+    <ng-include src="'app/pages/form/partials/alumni-information.html'" ng-if="vm.isType('alumni')"></ng-include>
     <ng-include src="'app/pages/form/partials/alumninew-information.html'" ng-if="vm.isType('alumninew')"></ng-include>
     <ng-include src="'app/pages/form/partials/hospital-information.html'" ng-if="vm.isType('hospital')"></ng-include>
     <ng-include src="'app/pages/form/partials/retired-information.html'" ng-if="vm.isType('retired')"></ng-include>
