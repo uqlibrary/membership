@@ -16,8 +16,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/form/:type',
       template: '<membership-form></membership-form>'
     })
-    .state('/payment/:id', {
-      url: '/payment/:id',
-      template: '<membership-payment></membership-payment>'
+    .state('/received/:id', {
+      url: '/received/:id',
+      template: '<membership-received></membership-received>'
     });
 }

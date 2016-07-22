@@ -3,15 +3,15 @@
 
   angular
     .module('app')
-    .component('membershipPayment', {
-      templateUrl: 'app/components/payment/payment.html',
+    .component('membershipReceived', {
+      templateUrl: 'app/components/received/received.html',
       restrict: 'E',
-      controller: PaymentMembershipController,
+      controller: ReceivedMembershipController,
       controllerAs: 'vm'
     });
 
   /** @ngInject **/
-  function PaymentMembershipController(MembershipSvc, $location, $stateParams, lodash, $window, UQL_PAYMENT_URL) {
+  function ReceivedMembershipController(MembershipSvc, $location, $stateParams, lodash, $window, UQL_PAYMENT_URL) {
     var vm = this;
 
     vm.member = {};
@@ -43,11 +43,13 @@
     vm.init = function () {
       MembershipSvc.get($stateParams.id).then(function (data) {
         vm.member = data;
-        console.log(data);
 
-        if (vm.member.status !== 'confirmed') {
+        if (vm.member.status === 'confirmed') {
+          vm.canPay = false;
+          vm.showWarning = false;
+        } else {
           var paymentTypes = ['alumni', 'community', 'alumnifriends'];
-          if (lodash.indexOf(paymentTypes, vm.member.type) !== -1) {
+          if (lodash.indexOf(paymentTypes, vm.member.type) >= 0) {
             vm.canPay = true;
 
             if (vm.member.type === 'alumni') {
@@ -57,9 +59,6 @@
               vm.pay();
             }
           }
-        } else {
-          vm.canPay = false;
-          vm.showWarning = false;
         }
       });
     };

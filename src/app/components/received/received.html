@@ -34,39 +34,3 @@
     </md-card-content>
   </md-card>
 </md-content>
-
-<div class="uql-membership">
-  <h1>UQ Library Membership</h1>
-
-  <p class="lead">Thank you for your membership application.</p>
-  <p ng-show="alumni">
-    <input id="plsconf" type="checkbox" ng-click="toggleAlumni()">
-    I acknowledge that I have read the <a href="https://www.library.uq.edu.au/library-services/services-for-uq-alumni"
-                                          target="_blank">Services for UQ Alumni</a>
-    and I am aware that access to databases is limited to those listed <a
-      href="https://web.library.uq.edu.au/library-services/uq-alumni/databases-available-uq-alumni-library-members"
-      target="_blank">here</a>.
-  </p>
-
-  <span ng-show="canPay">
-    <br><br>
-    <button id="paynow" type="button"
-            class="btn btn-success"
-            ng-click="pay()"
-            ng-disabled="redirecting || alumniPay">
-      Pay now
-    </button>
-    <span ng-show="redirecting"><i class="fa fa-refresh fa-spin"></i> Redirecting to UQ Payments..</span>
-    <br><br>
-  </span>
-
-  <span ng-hide="canPay">
-    <br><br>
-    <p class="lead">
-      You will be notified by email when your application has been processed by Library staff.
-    </p>
-    <br><br>
-  </span>
-
-  <p><a href="http://www.library.uq.edu.au/">Back to UQ Library home page</a></p>
-</div>
