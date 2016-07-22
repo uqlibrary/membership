@@ -52,4 +52,6 @@ var mock = mock || false;
       return moment(date).format('YYYY-MM-DD');
     };
   }
+
+  angular.module('app').constant('UQL_PAYMENT_URL', 'https://payments.uq.edu.au/OneStopWeb/aspx/tranadd.aspx?TRAN-TYPE=W01LIB05&');
 })();

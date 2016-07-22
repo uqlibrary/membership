@@ -1,0 +1,72 @@
+<md-content layout-padding
+            flex="100" flex-gt-md="80" flex-offset-gt-md="10">
+  <h1 class="md-display-1">UQ Library Membership</h1>
+
+  <md-card>
+    <md-card-content>
+      <p class="md-title">Thank you for your membership application.</p>
+
+      <p ng-show="vm.showWarning && vm.canPay">
+        <br />
+        <md-checkbox aria-label="Accept the terms of service" ng-model="vm.tosAccepted"></md-checkbox>
+        I acknowledge that I have read the <a href="https://www.library.uq.edu.au/library-services/services-for-uq-alumni"
+                                              target="_blank">Services for UQ Alumni</a>
+        and I am aware that access to databases is limited to those listed <a
+          href="https://web.library.uq.edu.au/library-services/uq-alumni/databases-available-uq-alumni-library-members"
+          target="_blank">here</a>.
+      </p>
+
+      <p ng-show="vm.canPay">
+        <md-button class="md-primary md-raised"
+                   ng-disabled="vm.redirecting || !vm.tosAccepted"
+                   ng-click="vm.pay()">Pay now</md-button>
+        <span ng-show="vm.redirecting">
+          <md-progress-circular md-mode="indeterminate" md-diameter="18"></md-progress-circular>
+          <span style="padding-left: 30px">Redirecting to UQ Payments..</span>
+        </span>
+      </p>
+
+      <p ng-show="!vm.canPay" class="md-subhead">
+        You will be notified by email when your application has been processed by Library staff.
+      </p>
+
+      <p class="md-subhead"><a href="http://www.library.uq.edu.au/">Back to UQ Library home page</a></p>
+    </md-card-content>
+  </md-card>
+</md-content>
+
+<div class="uql-membership">
+  <h1>UQ Library Membership</h1>
+
+  <p class="lead">Thank you for your membership application.</p>
+  <p ng-show="alumni">
+    <input id="plsconf" type="checkbox" ng-click="toggleAlumni()">
+    I acknowledge that I have read the <a href="https://www.library.uq.edu.au/library-services/services-for-uq-alumni"
+                                          target="_blank">Services for UQ Alumni</a>
+    and I am aware that access to databases is limited to those listed <a
+      href="https://web.library.uq.edu.au/library-services/uq-alumni/databases-available-uq-alumni-library-members"
+      target="_blank">here</a>.
+  </p>
+
+  <span ng-show="canPay">
+    <br><br>
+    <button id="paynow" type="button"
+            class="btn btn-success"
+            ng-click="pay()"
+            ng-disabled="redirecting || alumniPay">
+      Pay now
+    </button>
+    <span ng-show="redirecting"><i class="fa fa-refresh fa-spin"></i> Redirecting to UQ Payments..</span>
+    <br><br>
+  </span>
+
+  <span ng-hide="canPay">
+    <br><br>
+    <p class="lead">
+      You will be notified by email when your application has been processed by Library staff.
+    </p>
+    <br><br>
+  </span>
+
+  <p><a href="http://www.library.uq.edu.au/">Back to UQ Library home page</a></p>
+</div>

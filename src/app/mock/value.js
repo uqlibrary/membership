@@ -243,7 +243,8 @@
         status: 'unconfirmed',
         alumninewNum: '240671234123412',
         alumniNum: 's12341234',
-        alumniBarcode: null
+        alumniBarcode: null,
+        paymentCode: 'A06'
       },
       // User that is in the process of being confirmed
       {

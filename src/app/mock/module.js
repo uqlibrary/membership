@@ -96,6 +96,16 @@
     $httpBackend.whenPOST(api + '/' + d.id + '/' + d.code + '/renew')
       .respond(200, MembershipMockData.renew);
 
+    angular.forEach(MembershipMockData.memberships, function (val) {
+      d = angular.copy(val);
+      $httpBackend.whenGET(api + '/' + d.id)
+        .respond(200, d);
+    });
+
+    d = angular.copy(MembershipMockData.memberships[2]);
+    $httpBackend.whenGET(api + '/' + d.id + '/' + d.code)
+      .respond(200, d);
+
     // File uploads
     var fileResponse = [
       {

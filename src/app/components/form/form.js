@@ -4,7 +4,7 @@
   angular
       .module('app')
       .component('membershipForm', {
-        templateUrl: 'app/pages/form/form.html',
+        templateUrl: 'app/components/form/form.html',
         restrict: 'E',
         controller: MembershipFormController,
         controllerAs: 'vm'

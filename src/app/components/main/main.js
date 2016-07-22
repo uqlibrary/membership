@@ -3,8 +3,8 @@
 
   angular
     .module('app')
-    .component('app', {
-      templateUrl: 'app/pages/main/main.html',
+    .component('membershipApp', {
+      templateUrl: 'app/components/main/main.html',
       restrict: 'E',
       controller: MainMembershipController,
       controllerAs: 'vm'

@@ -66,10 +66,10 @@
     </md-card>
 
     <!-- Special Work Address types -->
-    <ng-include src="'app/pages/form/partials/hospital-address.html'" ng-if="vm.isType('hospital')"></ng-include>
-    <ng-include src="'app/pages/form/partials/associate-address.html'" ng-if="vm.isType('associate')"></ng-include>
-    <ng-include src="'app/pages/form/partials/awaitingaurion-address.html'" ng-if="vm.isType('awaitingaurion')"></ng-include>
-    <ng-include src="'app/pages/form/partials/visitors-address.html'" ng-if="vm.isType('visitors')"></ng-include>
+    <ng-include src="'app/components/form/partials/hospital-address.html'" ng-if="vm.isType('hospital')"></ng-include>
+    <ng-include src="'app/components/form/partials/associate-address.html'" ng-if="vm.isType('associate')"></ng-include>
+    <ng-include src="'app/components/form/partials/awaitingaurion-address.html'" ng-if="vm.isType('awaitingaurion')"></ng-include>
+    <ng-include src="'app/components/form/partials/visitors-address.html'" ng-if="vm.isType('visitors')"></ng-include>
 
     <!-- Contact Information Card -->
     <md-card>
@@ -151,13 +151,13 @@
     </md-card>
 
     <!-- More Information Cards -->
-    <ng-include src="'app/pages/form/partials/alumni-information.html'" ng-if="vm.isType('alumni')"></ng-include>
-    <ng-include src="'app/pages/form/partials/alumninew-information.html'" ng-if="vm.isType('alumninew')"></ng-include>
-    <ng-include src="'app/pages/form/partials/cyberschool-information.html'" ng-if="vm.isType('cyberschool')"></ng-include>
-    <ng-include src="'app/pages/form/partials/hospital-information.html'" ng-if="vm.isType('hospital')"></ng-include>
-    <ng-include src="'app/pages/form/partials/retired-information.html'" ng-if="vm.isType('retired')"></ng-include>
-    <ng-include src="'app/pages/form/partials/reciprocal-information.html'" ng-if="vm.isType('reciprocal')"></ng-include>
-    <ng-include src="'app/pages/form/partials/proxy-information.html'" ng-if="vm.isType('proxy')"></ng-include>
+    <ng-include src="'app/components/form/partials/alumni-information.html'" ng-if="vm.isType('alumni')"></ng-include>
+    <ng-include src="'app/components/form/partials/alumninew-information.html'" ng-if="vm.isType('alumninew')"></ng-include>
+    <ng-include src="'app/components/form/partials/cyberschool-information.html'" ng-if="vm.isType('cyberschool')"></ng-include>
+    <ng-include src="'app/components/form/partials/hospital-information.html'" ng-if="vm.isType('hospital')"></ng-include>
+    <ng-include src="'app/components/form/partials/retired-information.html'" ng-if="vm.isType('retired')"></ng-include>
+    <ng-include src="'app/components/form/partials/reciprocal-information.html'" ng-if="vm.isType('reciprocal')"></ng-include>
+    <ng-include src="'app/components/form/partials/proxy-information.html'" ng-if="vm.isType('proxy')"></ng-include>
 
     <!-- Document Upload -->
     <md-card ng-if="vm.typeObject.upload">

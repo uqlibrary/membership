@@ -10,10 +10,14 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('app', {
       url: '/',
-      template: '<app></app>'
+      template: '<membership-app></membership-app>'
     })
     .state('form/:type', {
       url: '/form/:type',
       template: '<membership-form></membership-form>'
+    })
+    .state('/payment/:id', {
+      url: '/payment/:id',
+      template: '<membership-payment></membership-payment>'
     });
 }
