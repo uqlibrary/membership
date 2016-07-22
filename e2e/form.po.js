@@ -39,6 +39,27 @@ var FormPage = function() {
   this.form.associateAddress1 = this.form.element(by.model('vm.form.associateAddress_1'));
   this.form.associateAddress2 = this.form.element(by.model('vm.form.associateAddress_2'));
 
+  // Awaiting Aurion
+  this.form.awaitingaurionAddress0 = this.form.element(by.model('vm.form.awaitingaurionAddress_0'));
+  this.form.awaitingaurionAddress1 = this.form.element(by.model('vm.form.awaitingaurionAddress_2'));
+  this.form.awaitingaurionAddress2 = this.form.element(by.model('vm.form.awaitingaurionAddress_1'));
+
+  // Cyberschool
+  this.form.cyberschoolPhoneNum = this.form.element(by.model('vm.form.cyberschoolPhoneNum'));
+  this.form.cyberschoolEnrolYear = this.form.all(by.model('vm.form.cyberschoolEnrolYear')).get(0);
+  this.form.cyberschoolAddress0 = this.form.element(by.css('#cyberschoolAddress_0'));
+  this.form.cyberschoolAddress1 = this.form.element(by.model('vm.form.cyberschoolAddress_1'));
+  this.form.cyberschoolAddress2 = this.form.element(by.model('vm.form.cyberschoolAddress_2'));
+  this.form.cyberschoolAddress3 = this.form.element(by.model('vm.form.cyberschoolAddress_3'));
+
+  // Hospital
+  this.form.hospitalAddress0 = this.form.element(by.model('vm.form.hospitalAddress_0'));
+  this.form.hospitalAddress1 = this.form.element(by.model('vm.form.hospitalAddress_1'));
+  this.form.hospitalAddress2 = this.form.element(by.model('vm.form.hospitalAddress_2'));
+  this.form.hospitalClass = this.form.all(by.model('vm.form.hospitalClass')).get(0);
+  this.form.hospitalService = this.form.all(by.model('vm.form.hospitalService')).get(0);
+  this.form.hospitalEmpType = this.form.all(by.model('vm.form.hospitalEmpType')).get(0);
+
   // General items
   this.form.helpContent = this.form.element(by.css('#helpContent'));
   this.form.submitButton = this.form.element(by.css('#submitMembership'));
