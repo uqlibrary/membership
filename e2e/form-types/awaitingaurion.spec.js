@@ -4,7 +4,7 @@ describe('The Staff Awaiting Aurion form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/awaitingaurion');
+    browser.get('/#!/form/awaitingaurion');
     page = require('../form.po');
   });
 

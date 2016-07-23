@@ -4,7 +4,7 @@ describe('The Proxy form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/proxy');
+    browser.get('/#!/form/proxy');
     page = require('../form.po');
   });
 

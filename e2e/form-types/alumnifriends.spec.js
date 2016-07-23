@@ -4,7 +4,7 @@ describe('The Alumni Friends form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/alumnifriends');
+    browser.get('/#!/form/alumnifriends');
     page = require('../form.po');
   });
 

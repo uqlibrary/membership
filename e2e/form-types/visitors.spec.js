@@ -4,7 +4,7 @@ describe('The Visitors form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/visitors');
+    browser.get('/#!/form/visitors');
     page = require('../form.po');
   });
 

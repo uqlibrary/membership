@@ -4,7 +4,7 @@ describe('The Cyberschool form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/cyberschool');
+    browser.get('/#!/form/cyberschool');
     page = require('../form.po');
   });
 

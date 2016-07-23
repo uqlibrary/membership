@@ -4,7 +4,7 @@ describe('The Hospital form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/hospital');
+    browser.get('/#!/form/hospital');
     page = require('../form.po');
   });
 

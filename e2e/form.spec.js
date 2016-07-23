@@ -7,7 +7,7 @@ describe('The general form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/alumni'); // Could be any type
+    browser.get('/#!/form/alumni'); // Could be any type
     page = require('./form.po');
   });
 

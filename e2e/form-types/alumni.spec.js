@@ -4,7 +4,7 @@ describe('The Alumni form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/alumni');
+    browser.get('/#!/form/alumni');
     page = require('../form.po');
   });
 

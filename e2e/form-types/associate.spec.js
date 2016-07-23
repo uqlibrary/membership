@@ -4,7 +4,7 @@ describe('The Associate form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/associate');
+    browser.get('/#!/form/associate');
     page = require('../form.po');
   });
 

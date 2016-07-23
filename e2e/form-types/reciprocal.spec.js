@@ -4,7 +4,7 @@ describe('The Reciprocal form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/reciprocal');
+    browser.get('/#!/form/reciprocal');
     page = require('../form.po');
   });
 

@@ -4,7 +4,7 @@ describe('The New Graduates form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/alumninew');
+    browser.get('/#!/form/alumninew');
     page = require('../form.po');
   });
 

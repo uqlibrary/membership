@@ -4,7 +4,7 @@ describe('The Retired form attributes', function () {
   var page;
 
   beforeEach(function () {
-    browser.get('/form/retired');
+    browser.get('/#!/form/retired');
     page = require('../form.po');
   });
 
