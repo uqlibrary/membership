@@ -11,7 +11,7 @@
     });
 
   /** @ngInject **/
-  function AdminMembershipController(MembershipSvc, UQLAccountService, $window, lodash, $mdToast) {
+  function AdminMembershipController(MembershipSvc, UQLAccountService, $window, lodash) {
     var vm = this;
 
     vm.isAllowed = true;

@@ -23,9 +23,8 @@
 
     /**
      * Opens up a member for editing
-     * @param index
      */
-    vm.allowUpdates = function (index) {
+    vm.allowUpdates = function () {
       var confirm = $mdDialog.confirm()
         .title('Would you like to update this user?')
         .textContent('WARNING: Doing this is irreversible, and should only be done with the utmost caution!')
@@ -79,10 +78,8 @@
         vm.createSacrifice();
         vm.isUpdating = false;
       }, function (error) {
-        $mdToast.show(
-          $mdToast.simple().textContent(error)
-        );
-      })
+        $mdToast.show($mdToast.simple().textContent(error));
+      });
     };
 
     /**
@@ -95,8 +92,8 @@
       var fields = [];
 
       lodash.forEach(vm.member, function (value, key) {
-        if (vm.member.hasOwnProperty(key) && ignoredFields.indexOf(key) === -1
-          && key.startsWith('_') === false && key.startsWith('$') === false) {
+        if (vm.member.hasOwnProperty(key) && ignoredFields.indexOf(key) === -1 &&
+          key.startsWith('_') === false && key.startsWith('$') === false) {
           fields.push(key);
         }
       });
