@@ -30,19 +30,19 @@ function awsDeploy() {
 
   var subDir = '/membership';
 
-  if (gutil.env.CI_BRANCH !== 'production') {
-    subDir += '/' + gutil.env.CI_BRANCH;
+  if (process.env.CI_BRANCH !== 'production') {
+    subDir += '/' + process.env.CI_BRANCH;
   }
 
   // create a new publisher using S3 options taken from the environment
   var publisher = awsPublish.create({
-    accessKeyId: gutil.env.AWSAccessKeyId,
-    secretAccessKey: gutil.env.AWSSecretKey,
+    accessKeyId: process.env.AWSAccessKeyId,
+    secretAccessKey: process.env.AWSSecretKey,
     params: {
-      region: gutil.env.AWSRegion,
-      Bucket: gutil.env.S3Bucket,
+      region: process.env.AWSRegion,
+      Bucket: process.env.S3Bucket,
       bucketSubDir: subDir,
-      distribution: gutil.env.CFDistribution
+      distribution: process.env.CFDistribution
     }
   });
 
