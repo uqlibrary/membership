@@ -56,7 +56,7 @@ function awsDeploy() {
       path.dirname = subDir + '/' + path.dirname;
     }))
     // gzip, Set Content-Encoding headers
-    .pipe(awspublish.gzip())
+    .pipe(awsPublish.gzip({ ext: '.gz' }))
 
     // publisher will add Content-Length, Content-Type and headers specified above
     // If not specified it will set x-amz-acl to public-read by default
@@ -66,5 +66,5 @@ function awsDeploy() {
     .pipe(publisher.cache())
 
     // print upload updates to console
-    .pipe(awspublish.reporter());
+    .pipe(awsPublish.reporter());
 }
