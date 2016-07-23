@@ -6,7 +6,7 @@
   </span>
 
   <section class="search-section" md-whiteframe ng-if="vm.isAllowed">
-    <md-content layout="row">
+    <md-content layout="column" layout-gt-sm="row" ng-show="!vm.isSearching">
       <md-input-container flex="auto">
         <label>Name</label>
         <input type="text" ng-model="vm.search.name" />
@@ -14,7 +14,7 @@
 
       <md-input-container flex="auto">
         <label>Account type</label>
-        <md-select ng-model="vm.search.accountType">
+        <md-select ng-model="vm.search.type">
           <md-option selected="selected">All</md-option>
           <md-option ng-repeat="i in vm.accountTypes | orderBy:'title'" value="{{i.value}}">{{i.title}}</md-option>
         </md-select>
@@ -22,10 +22,15 @@
       </md-input-container>
 
       <div flex="1" class="search-container">
-        <md-button class="md-accent md-raised search-button">
+        <md-button class="md-accent md-raised search-button" ng-click="vm.doSearch()">
           <md-icon class="search-icon">search</md-icon> Search
         </md-button>
       </div>
+    </md-content>
+
+    <md-content class="is-searching" ng-show="vm.isSearching">
+      <md-progress-circular md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+      <span style="padding-left: 30px" class="md-subhead">Searching..</span>
     </md-content>
   </section>
 
@@ -34,16 +39,51 @@
       <md-tabs md-selected="vm.selectedTabIndex" md-dynamic-height class="md-accent">
         <md-tab>
           <md-tab-label>
-            Search results (101)
+            Search results ({{vm.searchResults.length}})
           </md-tab-label>
-          Bla bla bla
+          <md-tab-body>
+            <p class="body1 no-results" ng-show="!vm.hasSearched">Enter your search terms above to see results.</p>
+            <p class="body1 no-results" ng-show="vm.hasSearched && vm.searchResults.length == 0">
+              Your search terms did not match any users in the database.
+            </p>
+
+            <md-table-container ng-show="vm.searchResults.length > 0">
+              <table md-table>
+                <thead md-head>
+                <tr md-row>
+                  <th md-column>Name</th>
+                  <th md-column>Type</th>
+                  <th md-column>Status</th>
+                  <th md-column>Expiry</th>
+                  <th md-column>Barcode</th>
+                  <th md-column>Actions</th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-repeat="m in vm.searchResults" ng-click="vm.openMember(m)">
+                  <td md-cell>
+                    {{ m.title }} {{ m.firstName }} {{ m.sn }}
+                  </td>
+                  <td md-cell>{{vm.accountTypeByValue(m.type).title}}</td>
+                  <td md-cell>{{m.status}}</td>
+                  <td md-cell>{{m.expiry}}</td>
+                  <td md-cell>{{m.barcode}}</td>
+                  <td md-cell>Actions</td>
+                </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+          </md-tab-body>
         </md-tab>
-        <md-tab ng-repeat="user in vm.openUsers">
+        <md-tab ng-repeat="m in vm.openUsers">
           <md-tab-label>
-            {{user.name}}
+            {{ m.firstName }} {{ m.sn }}
             <md-icon class="tab-icon" ng-click="vm.removeTab($index)">clear</md-icon>
           </md-tab-label>
-          Lalalala
+          <md-tab-body class="search-member-body">
+            <!-- Edit area -->
+            <membership-details layout-padding member="m"></membership-details>
+          </md-tab-body>
         </md-tab>
       </md-tabs>
     </md-content>

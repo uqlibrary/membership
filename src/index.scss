@@ -43,6 +43,10 @@ h2 {
   min-height: calc(100% - 488px);
 }
 
+.capitalize {
+  text-transform: capitalize;
+}
+
 @import 'app/components/main/main';
 @import 'app/components/form/form';
 @import 'app/components/admin/admin';

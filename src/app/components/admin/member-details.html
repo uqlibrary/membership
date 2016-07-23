@@ -1,0 +1,99 @@
+<!-- header row -->
+<div class="membership-action-row" layout="row">
+  <span flex></span>
+  <div flex-none ng-show="!vm.isUpdating">
+    <md-button class="md-primary md-raised md-mini" ng-click="vm.allowUpdates()">
+      <md-icon>lock_open</md-icon>
+      Allow updating
+    </md-button>
+  </div>
+
+  <div flex-none ng-show="vm.isUpdating" ng-click="vm.cancel()">
+    <md-button class="md-secondary md-raised md-mini">
+      <md-icon>clear</md-icon>
+      Cancel
+    </md-button>
+  </div>
+
+  <div flex-none ng-show="vm.isUpdating">
+    <md-button class="md-primary md-raised md-mini" ng-click="vm.save()">
+      <md-icon>save</md-icon>
+      Save
+    </md-button>
+  </div>
+</div>
+
+<!-- All other fields. Just print them as text inputs -->
+<div layout="column" layout-gt-xs="row" layout-wrap>
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label>Title</label>
+    <md-select ng-model="vm.sacrifice.title" ng-disabled="!vm.isUpdating">
+      <md-option value="Mr">Mr</md-option>
+      <md-option value="Mrs">Mrs</md-option>
+      <md-option value="Ms">Ms</md-option>
+      <md-option value="Miss">Miss</md-option>
+      <md-option value="Dr">Dr</md-option>
+      <md-option value="Sr">Sr</md-option>
+      <md-option value="Prof">Prof</md-option>
+      <md-option value="AProf">AProf</md-option>
+    </md-select>
+  </md-input-container>
+
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label>First name</label>
+    <input ng-model="vm.sacrifice.firstName" type="text" ng-disabled="!vm.isUpdating" />
+  </md-input-container>
+
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label>Last name</label>
+    <input ng-model="vm.sacrifice.sn" type="text" ng-disabled="!vm.isUpdating" />
+  </md-input-container>
+
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label>Home Address Line 1</label>
+    <input type="text" ng-model="vm.sacrifice.homeAddress_0" ng-disabled="!vm.isUpdating" />
+  </md-input-container>
+
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label>Home Address Line 2</label>
+    <input type="text" ng-model="vm.sacrifice.homeAddress_1" ng-disabled="!vm.isUpdating" />
+  </md-input-container>
+
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label>City</label>
+    <input type="text" ng-model="vm.sacrifice.homeAddress_city" ng-disabled="!vm.isUpdating" />
+  </md-input-container>
+
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label>State</label>
+    <md-select ng-model="vm.sacrifice.homeAddress_state" ng-disabled="!vm.isUpdating">
+      <md-option value="QLD">QLD</md-option>
+      <md-option value="NSW">NSW</md-option>
+      <md-option value="ACT">ACT</md-option>
+      <md-option value="VIC">VIC</md-option>
+      <md-option value="TAS">TAS</md-option>
+      <md-option value="SA">SA</md-option>
+      <md-option value="WA">WA</md-option>
+      <md-option value="NT">NT</md-option>
+    </md-select>
+  </md-input-container>
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label>Postcode</label>
+    <input type="text" ng-model="vm.sacrifice.homeAddress_postcode" ng-disabled="!vm.isUpdating" />
+  </md-input-container>
+
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label>Email</label>
+    <input type="text" ng-model="vm.sacrifice.mail" ng-disabled="!vm.isUpdating" />
+  </md-input-container>
+
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label>Phone</label>
+    <input type="text" ng-model="vm.sacrifice.phone" ng-disabled="!vm.isUpdating" />
+  </md-input-container>
+
+  <md-input-container ng-repeat="item in vm.otherFields()" flex="100" flex-gt-sm="30" flex-gt-xs="50">
+    <label class="capitalize">{{item}}</label>
+    <input type="text" ng-model="vm.sacrifice[item]" ng-disabled="!vm.isUpdating" />
+  </md-input-container>
+</div>

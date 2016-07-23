@@ -17,12 +17,25 @@ membership-admin {
           }
         }
       }
+
+      &.is-searching {
+        text-align: center;
+        padding: 20px;
+      }
     }
   }
 
   section.result-section {
     margin-top: 10px;
     padding: 0;
+
+    tr {
+      cursor: pointer;
+    }
+
+    .search-member-body {
+      padding: 10px;
+    }
 
     md-tabs {
       md-icon.tab-icon {
@@ -31,6 +44,16 @@ membership-admin {
         &:hover {
           color: #444 !important;
         }
+      }
+
+      .no-results {
+        padding-left: 10px;
+      }
+    }
+
+    md-input-container {
+      .md-errors-spacer {
+        display: none;
       }
     }
   }

@@ -11,24 +11,73 @@
     });
 
   /** @ngInject **/
-  function AdminMembershipController(MembershipSvc, UQLAccountService, $window) {
+  function AdminMembershipController(MembershipSvc, UQLAccountService, $window, lodash, $mdToast) {
     var vm = this;
 
     vm.isAllowed = true;
     vm.accountTypes = [];
     vm.search = {};
     vm.selectedTabIndex = 0;
-    vm.openUsers = [
-      {
-        name: 'Jan-Willem Wisgerhof'
-      },
-      {
-        name: 'Mahtab Danaee'
-      }
-    ];
+    vm.isSearching = false;
+    vm.hasSearched = false;
 
+    /**
+     * A list of all search results
+     * @type []
+     */
+    vm.searchResults = [];
+
+    /**
+     * A list of all memberships currently open in tabs
+     * @type []
+     */
+    vm.openUsers = [];
+
+    /**
+     * Removes a tab
+     * @param index
+     */
     vm.removeTab = function (index) {
-      vm.openUsers.splice(index, 1);
+      vm.openUsers = vm.openUsers.slice(index, 1);
+    };
+
+    /**
+     * Calls uqlapp and searches for the given variables
+     */
+    vm.doSearch = function () {
+      vm.isSearching = true;
+      vm.hasSearched = true;
+      vm.searchResults = [];
+      MembershipSvc.list(vm.search, 100).then(function (data) {
+        vm.searchResults = data;
+      }).finally(function () {
+        vm.isSearching = false;
+      });
+    };
+
+    /**
+     * Finds an account type by value
+     * @param value
+     * @returns {*}
+     */
+    vm.accountTypeByValue = function (value) {
+      return lodash.find(vm.accountTypes, {value: value});
+    };
+
+    /**
+     * Opens up a member record. Resets data if necessary
+     * @param m
+     */
+    vm.openMember = function (m) {
+      var i = lodash.findIndex(vm.openUsers, {id: m.id});
+      if (i === -1) {
+        vm.openUsers.push(m);
+        i = vm.openUsers.length - 1;
+      } else {
+        vm.openUsers[i] = m;
+      }
+
+      vm.selectedTabIndex = i + 1;
     };
 
     /**
