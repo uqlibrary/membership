@@ -17,7 +17,7 @@ gulp.task('serve', gulp.series('inject', 'watch', 'browsersync'));
 gulp.task('serve:e2e', gulp.series('inject', 'browsersync'));
 gulp.task('serve:dist', gulp.series('default', 'browsersync:dist'));
 gulp.task('default', gulp.series('clean', 'build'));
-gulp.task('deploy', gulp.series('clean', 'build', 'aws-deploy'));
+gulp.task('deploy', gulp.series('clean', 'build', 'pre-deploy', 'aws-deploy'));
 gulp.task('watch', watch);
 
 function reloadBrowserSync(cb) {

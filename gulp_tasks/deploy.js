@@ -19,23 +19,28 @@ var gutil = require('gulp-util');
 var cloudFront = require('gulp-invalidate-cloudfront');
 var awsPublish = require('gulp-awspublish');
 
-/** DEPLOY **/
-gulp.task('aws-deploy', awsDeploy);
+var subDir = '/membership';
 
-function awsDeploy() {
-  // Remove mocking
-  gulp.src(['dist/index.html'])
-    .pipe(replace('var mock = true', 'var mock = false'))
-    .pipe(gulp.dest('dist'));
+gulp.task('pre-deploy', preDeploy);
 
-  var subDir = '/membership';
-
+function preDeploy() {
   if (process.env.CI_BRANCH !== 'production') {
     subDir += '/' + process.env.CI_BRANCH;
   }
 
-  // create a new publisher using S3 options taken from the environment
-  var publisher = awsPublish.create({
+  // Remove mocking
+  return gulp.src(['dist/index.html'])
+    .pipe(replace('var mock = true', 'var mock = false'))
+    .pipe(replace('<base href="/">', '<base href="' + subDir + '/">'))
+    .pipe(gulp.dest('dist'));
+}
+
+/** DEPLOY **/
+gulp.task('aws-deploy', awsDeploy);
+
+function awsDeploy() {
+  // Expects the variable 'subDir' to be updated by the pre-deploy task
+  var awsConfig = {
     accessKeyId: process.env.AWSAccessKeyId,
     secretAccessKey: process.env.AWSSecretKey,
     params: {
@@ -44,27 +49,21 @@ function awsDeploy() {
       bucketSubDir: subDir,
       distribution: process.env.CFDistribution
     }
-  });
+  };
+
+  // create a new publisher using S3 options taken from the environment
+  var publisher = awsPublish.create(awsConfig, {});
 
   // define custom headers
   var headers = {
     'Cache-Control': 'max-age=315360000, no-transform, public'
   };
 
-  return gulp.src('dist/**/')
+  return gulp.src('dist/**/*')
     .pipe(rename(function (path) {
       path.dirname = subDir + '/' + path.dirname;
     }))
-    // gzip, Set Content-Encoding headers
-    .pipe(awsPublish.gzip({ ext: '.gz' }))
-
-    // publisher will add Content-Length, Content-Type and headers specified above
-    // If not specified it will set x-amz-acl to public-read by default
-    .pipe(publisher.publish(headers))
-
-    // create a cache file to speed up consecutive uploads
-    .pipe(publisher.cache())
-
-    // print upload updates to console
+    .pipe(awsPublish.gzip())
+    .pipe(publisher.publish(headers, { force: true }))
     .pipe(awsPublish.reporter());
 }
