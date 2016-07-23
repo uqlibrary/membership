@@ -15,8 +15,8 @@
       <md-input-container flex="auto">
         <label>Account type</label>
         <md-select ng-model="vm.search.type">
-          <md-option selected="selected">All</md-option>
-          <md-option ng-repeat="i in vm.accountTypes | orderBy:'title'" value="{{i.value}}">{{i.title}}</md-option>
+          <md-option selected="selected" value="">All</md-option>
+          <md-option ng-repeat="i in vm.accountTypes | orderBy:'title'" ng-value="i.value">{{i.title}}</md-option>
         </md-select>
         <div class="md-errors-spacer"></div> <!-- Bit of a Material hack (display only) -->
       </md-input-container>
