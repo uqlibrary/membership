@@ -57,4 +57,9 @@ membership-admin {
       }
     }
   }
+
+  /* Without this hack, the TAB LABELS do not resize after a person's name is changed */
+  md-pagination-wrapper {
+    width:auto !important;
+  }
 }

@@ -16,14 +16,14 @@ describe('The membership received view', function () {
   });
 
   it('Should hide the payment buttons if a user is already confirmed', function () {
-    browser.get('/#!/received/00000000-0000-0000-0000-000000000007');
+    browser.get('/#!/received/00000000-0000-0000-0000-000000000003');
     expect(page.checkbox.isDisplayed()).toBeFalsy();
     expect(page.submitButton.isDisplayed()).toBeFalsy();
   });
 
   it('Should automatically redirect the user to UQ payments if the type is alumnifriends or community', function () {
     browser.ignoreSynchronization = true;
-    browser.get('/#!/received/00000000-0000-0000-0000-000000000008');
+    browser.get('/#!/received/00000000-0000-0000-0000-000000000002');
 
     expect(browser.getCurrentUrl()).toMatch(/payments.uq.edu.au/);
     browser.ignoreSynchronization = false;

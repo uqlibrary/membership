@@ -6,24 +6,68 @@
     .run(runBlock);
 
   /** @ngInject **/
-  function runBlock($httpBackend, UQL_APP_CONFIG, MembershipMockData) {
+  function runBlock($httpBackend, UQL_APP_CONFIG, MockMembershipFormData, MockMembershipCyberschools, MockMemberships) {
     var api = UQL_APP_CONFIG.apiUrl + 'membership';
-    var d = {};
 
     function escapeRegExp(str) {
       return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
     }
 
-    $httpBackend.whenGET(api)
-      .respond(200, MembershipMockData.form);
+    // General GET requests
+    $httpBackend.whenGET(api).respond(200, MockMembershipFormData);
+    $httpBackend.whenGET(api + '/cyberschools').respond(200, MockMembershipCyberschools);
+    $httpBackend.whenGET(new RegExp(escapeRegExp(api + '_types?') + '([0-9]*)')).respond(200, MockMembershipFormData.type);
 
-    $httpBackend.whenGET(api + '/cyberschools')
-      .respond(200, MembershipMockData.cyberschools);
+    // Get members. Working filter included
+    $httpBackend.whenGET(new RegExp(escapeRegExp(api + 's?') + '([0-9]*)')).respond(function (method, url, data, headers, params) {
+      var r = [];
+      angular.forEach(MockMemberships, function (member) {
+        // Name filter
+        if (params['filter[name]']) {
+          var fullName = member.firstName + ' ' + member.sn;
+          if (!fullName.match(new RegExp(params['filter[name]']))) {
+            return false;
+          }
+        }
 
-    $httpBackend.whenPOST(api)
-      .respond(200, MembershipMockData.submit);
+        // Type filter
+        if (params['filter[type]']) {
+          if (!member.type.match(new RegExp(params['filter[type]']))) {
+            return false;
+          }
+        }
 
-    $httpBackend.whenGET(new RegExp(api + '_types?([0-9]*)')).respond(200, MembershipMockData.type);
+        r.push(member);
+      });
+      // Return members that fit the filter
+      return [200, r];
+    });
+
+    // Get specific member
+    $httpBackend.whenGET(new RegExp(escapeRegExp(api + '/') + '*')).respond(function (method, url) {
+      var id = url.split("/").pop();
+      var statusCode = 404;
+      var memberFound = false;
+      angular.forEach(MockMemberships, function (member) {
+        if (member.id === id) {
+          statusCode = 200;
+          memberFound = member;
+        }
+      });
+
+      return [statusCode, memberFound ? memberFound : "Not found"];
+    });
+
+    // New membership / update
+    $httpBackend.whenPOST(new RegExp(escapeRegExp(api + '/') + '*')).respond(function (method, url, data) {
+      data = angular.fromJson(data);
+      if (!data.id) {
+        data.id = '00000000-0000-0000-0000-000000000001';
+      }
+      return [200, data];
+    });
+
+/*
 
     $httpBackend.whenPOST(
       new RegExp(
@@ -31,18 +75,6 @@
       )
     )
       .respond(200, MembershipMockData.type[0]);
-
-    $httpBackend.whenGET(
-      new RegExp(
-        escapeRegExp(api + 's?') + '[0-9]*' + escapeRegExp('&filter[name]=Hospital')
-      )
-    )
-      .respond(200, [MembershipMockData.memberships[0]]);
-
-    var urlRegex = escapeRegExp(api + 's?');
-    $httpBackend.whenGET(new RegExp(urlRegex + '([0-9]*)'))
-      .respond(200, [MembershipMockData.memberships[0], MembershipMockData.memberships[1], MembershipMockData.memberships[2],
-        MembershipMockData.memberships[3], MembershipMockData.memberships[4], MembershipMockData.memberships[5]]);
 
     d = angular.copy(MembershipMockData.memberships[0]);
     d.confirmedOn = '09-09-2013 16:11:24';
@@ -116,7 +148,7 @@
       }
     ];
     $httpBackend.whenPOST(UQL_APP_CONFIG.apiUrl + 'file/membership').respond(200, fileResponse);
-
+*/
     $httpBackend.whenGET().passThrough();
   }
 })();

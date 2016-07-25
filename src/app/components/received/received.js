@@ -42,6 +42,7 @@
      */
     vm.init = function () {
       MembershipSvc.get($stateParams.id).then(function (data) {
+        console.log(data);
         vm.member = data;
 
         if (vm.member.status === 'confirmed') {
