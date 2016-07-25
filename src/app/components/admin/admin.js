@@ -38,7 +38,7 @@
      * @param index
      */
     vm.removeTab = function (index) {
-      vm.openUsers = vm.openUsers.slice(index, 1);
+      vm.openUsers.splice(index, 1);
     };
 
     /**

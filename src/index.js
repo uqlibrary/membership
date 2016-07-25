@@ -27,7 +27,7 @@ var mock = mock || false;
   angular.module('app').config(appConfig);
 
   /** @ngInject */
-  function appConfig($mdThemingProvider, $mdDateLocaleProvider, moment) {
+  function appConfig($mdThemingProvider, $mdDateLocaleProvider, moment, $compileProvider) {
     var uqPurple = $mdThemingProvider.extendPalette('deep-purple', {
       300: '#d2c1d7',
       400: '#6B0C8A',
@@ -51,6 +51,8 @@ var mock = mock || false;
     $mdDateLocaleProvider.formatDate = function (date) {
       return moment(date).format('DD-MM-YYYY');
     };
+
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(mailto):/);
   }
 
   angular.module('app').constant('UQL_PAYMENT_URL', 'https://payments.uq.edu.au/OneStopWeb/aspx/tranadd.aspx?TRAN-TYPE=W01LIB05&');
