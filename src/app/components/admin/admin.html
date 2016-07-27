@@ -102,8 +102,18 @@
                     </span>
                     <span ng-if="m.status === 'unconfirmed'">
                       <span ng-hide="m._deleted || m._confirming">
-                        <md-button class="md-primary md-raised mini" ng-click="vm.confirmMember(m)">Accept</md-button>
-                        <md-button class="md-secondary md-raised mini" ng-click="vm.showDeleteDialog(m)">Delete</md-button>
+                        <md-button
+                            class="md-primary md-raised mini"
+                            ng-hide="m.confirmStep == 1 || m.confirmStep == 2"
+                            ng-click="vm.confirmMember(m)">Accept</md-button>
+                        <md-button
+                            class="md-secondary md-raised mini"
+                            ng-hide="m.confirmStep == 1 || m.confirmStep == 2"
+                            ng-click="vm.showDeleteDialog(m)">Delete</md-button>
+                        <md-button
+                          class="md-secondary md-raised mini"
+                          disabled="disabled"
+                          ng-show="m.confirmStep == 1 || m.confirmStep == 2">In Progress</md-button>
                       </span>
                       <span ng-show="m._confirming">
                         <md-progress-circular md-mode="indeterminate" md-diameter="18"></md-progress-circular>
