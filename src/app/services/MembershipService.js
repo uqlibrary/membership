@@ -8,7 +8,7 @@
   'use strict';
 
   angular.module('app')
-    .factory('MembershipSvc', ['$http', '$q', '$log', '$timeout', 'UQL_APP_CONFIG', 'lodash',
+    .factory('MembershipService', ['$http', '$q', '$log', '$timeout', 'UQL_APP_CONFIG', 'lodash',
       function ($http, $q, $log, $timeout, UQL_APP_CONFIG, lodash) {
         var api = UQL_APP_CONFIG.apiUrl + 'membership';
         var memberships = {};

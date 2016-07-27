@@ -11,7 +11,7 @@
     });
 
   /** @ngInject **/
-  function AdminMembershipController(MembershipSvc, UQLAccountService, $window, lodash) {
+  function AdminMembershipController(MembershipService, UQLAccountService, $window, lodash, FileService, $mdToast) {
     var vm = this;
 
     vm.isAllowed = true;
@@ -48,7 +48,7 @@
       vm.isSearching = true;
       vm.hasSearched = true;
       vm.searchResults = [];
-      MembershipSvc.list(vm.search, 100).then(function (data) {
+      MembershipService.list(vm.search, 100).then(function (data) {
         vm.searchResults = data;
       }).finally(function () {
         vm.isSearching = false;
@@ -81,20 +81,33 @@
     };
 
     /**
+     * @description Opens a new window with the file attachment
+     * @param {Object} attachment
+     * @returns {String}
+     */
+    vm.openAttachment = function (attachment) {
+      FileService.getSignedUrl(attachment.key).then(function (data) {
+        $window.open(data);
+      }, function () {
+        $mdToast.show($mdToast.simple().textContent('Unable to load file'));
+      });
+    };
+
+    /**
      * Initiates the controller
      */
     vm.init = function () {
       UQLAccountService.getAccount().then(function (data) {
         if (data.hasSession === false) {
           $window.location.href = "https://www.library.uq.edu.au/";
-        } else if (MembershipSvc.isAdmin(data) === false) {
+        } else if (MembershipService.isAdmin(data) === false) {
           vm.isAllowed = false;
         } else {
           vm.isAllowed = true;
         }
       });
 
-      MembershipSvc.get().then(function (data) {
+      MembershipService.get().then(function (data) {
         vm.accountTypes = data.accountTypes;
       });
     };

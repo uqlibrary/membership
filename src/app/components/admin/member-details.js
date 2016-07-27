@@ -14,7 +14,7 @@
     });
 
   /** @ngInject **/
-  function AdminDetailsMembershipController(lodash, $mdDialog, MembershipSvc, $mdToast) {
+  function AdminDetailsMembershipController(lodash, $mdDialog, MembershipService, $mdToast) {
     var vm = this;
 
     vm.isUpdating = false;
@@ -68,7 +68,7 @@
       lodash.merge(vm.member, vm.sacrifice);
 
       // Save in DB
-      MembershipSvc.submit(vm.member).then(function (data) {
+      MembershipService.submit(vm.member).then(function (data) {
         $mdToast.show(
           $mdToast.simple().textContent('Membership was updated')
         );

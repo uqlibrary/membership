@@ -11,7 +11,7 @@
       });
 
   /** @ngInject **/
-  function MembershipFormController(MembershipSvc, $stateParams, UQL_APP_CONFIG, lodash, UploadBase, $state) {
+  function MembershipFormController(MembershipService, $stateParams, UQL_APP_CONFIG, lodash, UploadBase, $state) {
     var vm = this;
 
     vm.type = $stateParams.type;
@@ -139,9 +139,9 @@
 
       var promise;
       if (vm.form.status && vm.form.status === 'renewing') {
-        promise = MembershipSvc.renew(vm.form);
+        promise = MembershipService.renew(vm.form);
       } else {
-        promise = MembershipSvc.submit(vm.form);
+        promise = MembershipService.submit(vm.form);
       }
 
       promise.then(function (response) {
@@ -157,7 +157,7 @@
      * Initiates the controller
      */
     vm.init = function () {
-      MembershipSvc.get().then(function (data) {
+      MembershipService.get().then(function (data) {
         // Set current type object
         angular.forEach(data.accountTypes, function (t) {
           if (t.value === vm.type) {
@@ -171,7 +171,7 @@
       });
 
       if (vm.type === 'cyberschool') {
-        MembershipSvc.getCyberschools().then(function (data) {
+        MembershipService.getCyberschools().then(function (data) {
           vm.cyberschools = data;
         });
       }

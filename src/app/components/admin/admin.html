@@ -89,7 +89,7 @@
                     <!-- Attachments -->
                     <div class="membership-attachments" ng-show="m.attachments.length">
                       <span class="md-body-1" ng-repeat="attachment in m.attachments">
-                        <a ng-click="openAttachment(attachment)" href="">
+                        <a ng-click="vm.openAttachment(attachment)" href="">
                           <md-icon>attachment</md-icon> {{ attachment.name }}
                         </a><br />
                       </span>

@@ -67,6 +67,11 @@
       return [200, data];
     });
 
+    // File attachments
+    var returnURL = 'http://localhost:3000/some-file.pdf';
+    console.log(new RegExp(escapeRegExp(UQL_APP_CONFIG.apiUrl + 'file/membership/') + '*'));
+    $httpBackend.whenGET(new RegExp(escapeRegExp(UQL_APP_CONFIG.apiUrl + 'file/membership/') + '*')).respond(200, returnURL);
+
 /*
 
     $httpBackend.whenPOST(

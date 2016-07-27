@@ -11,7 +11,7 @@
     });
 
   /** @ngInject **/
-  function MainMembershipController(MembershipSvc, $location) {
+  function MainMembershipController(MembershipService, $location) {
     var vm = this;
 
     vm.membershipTypes = [];
@@ -28,7 +28,7 @@
      * Initiates the controller
      */
     vm.init = function () {
-      MembershipSvc.get().then(function (data) {
+      MembershipService.get().then(function (data) {
         vm.membershipTypes = data.accountTypes;
       });
     };

@@ -11,7 +11,7 @@
     });
 
   /** @ngInject **/
-  function ReceivedMembershipController(MembershipSvc, $location, $stateParams, lodash, $window, UQL_PAYMENT_URL) {
+  function ReceivedMembershipController(MembershipService, $location, $stateParams, lodash, $window, UQL_PAYMENT_URL) {
     var vm = this;
 
     vm.member = {};
@@ -41,7 +41,7 @@
      * Initiates the controller
      */
     vm.init = function () {
-      MembershipSvc.get($stateParams.id).then(function (data) {
+      MembershipService.get($stateParams.id).then(function (data) {
         console.log(data);
         vm.member = data;
 
