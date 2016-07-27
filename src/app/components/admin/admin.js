@@ -11,7 +11,7 @@
     });
 
   /** @ngInject **/
-  function AdminMembershipController(MembershipService, UQLAccountService, $window, lodash, FileService, $mdToast) {
+  function AdminMembershipController(MembershipService, UQLAccountService, $window, lodash, FileService, $mdToast, $mdDialog) {
     var vm = this;
 
     vm.isAllowed = true;
@@ -90,6 +90,43 @@
         $window.open(data);
       }, function () {
         $mdToast.show($mdToast.simple().textContent('Unable to load file'));
+      });
+    };
+
+    /**
+     * Shows a dialog confirming a member's deletion
+     * @param member
+     */
+    vm.showDeleteDialog = function (member) {
+      var confirm = $mdDialog.confirm()
+        .title('Are you sure you want to delete this user?')
+        .textContent('WARNING: Doing this is irreversible, and should only be done with the utmost caution!')
+        .ok('Yes')
+        .cancel('No');
+      $mdDialog.show(confirm).then(function () {
+        MembershipService.deleteMembership(member.id).then(function () {
+          member._deleted = true;
+          $mdToast.show($mdToast.simple().textContent('Member deleted'));
+        }, function () {
+          $mdToast.show($mdToast.simple().textContent('Unable to delete member'));
+        });
+      });
+    };
+
+    /**
+     * Confirms a member
+     * @param member
+     */
+    vm.confirmMember = function (member) {
+      member._confirming = true;
+      MembershipService.confirm(member).then(function (data) {
+        lodash.merge(member, data.user);
+        $mdToast.show($mdToast.simple().textContent('Member confirmed'));
+      }, function (data) {
+        lodash.merge(member, data.user);
+        $mdToast.show($mdToast.simple().textContent(data.message));
+      }).finally(function () {
+        member._confirming = false;
       });
     };
 

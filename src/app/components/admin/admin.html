@@ -95,7 +95,27 @@
                       </span>
                     </div>
                   </td>
-                  <td md-cell>{{m.status}}</td>
+                  <td md-cell>
+                    <div ng-if="m.status === 'confirmed'">
+                      Confirmed
+                    </div>
+                    <div ng-if="m.status === 'renewing'">
+                      Renewing <br />
+                      <md-button ng-hide="m._confirming" class="md-primary md-raised mini">Re-confirm</md-button>
+                      <md-button ng-show="m._confirming" class="md-secondary md-raised mini">Confirming</md-button>
+                    </div>
+                    <div ng-if="m.status === 'unconfirmed'">
+                      <div ng-hide="m._deleted || m._confirming">
+                        <md-button class="md-primary md-raised mini" ng-click="vm.confirmMember(m)">Accept</md-button>
+                        <md-button class="md-secondary md-raised mini" ng-click="vm.showDeleteDialog(m)">Delete</md-button>
+                      </div>
+                      <span ng-show="m._confirming">
+                        <md-progress-circular md-mode="indeterminate" md-diameter="18"></md-progress-circular>
+                        <span style="padding-left: 30px">Confirming..</span>
+                      </span>
+                      <span class="md-body-2" ng-show="m._deleted">DELETED</span>
+                    </div>
+                  </td>
                   <td md-cell>{{m.expiry}}</td>
                   <td md-cell>{{m.barcode}}</td>
                   <td md-cell>

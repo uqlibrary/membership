@@ -58,6 +58,14 @@
       return [statusCode, memberFound ? memberFound : "Not found"];
     });
 
+    // Confirming memberships
+    var confirmRegEx = new RegExp(escapeRegExp(api + '/') + '([0-9]*-[0-9]*-[0-9]*-[0-9]*-[0-9]*)' + escapeRegExp('/confirm'));
+    $httpBackend.whenPOST(confirmRegEx).respond(function (method, url, data) {
+      data = angular.fromJson(data);
+      data.status = 'confirmed';
+      return [200, {error: false, user: data}];
+    });
+
     // New membership / update
     $httpBackend.whenPOST(new RegExp(escapeRegExp(api + '/') + '*')).respond(function (method, url, data) {
       data = angular.fromJson(data);
@@ -69,9 +77,10 @@
 
     // File attachments
     var returnURL = 'http://localhost:3000/some-file.pdf';
-    console.log(new RegExp(escapeRegExp(UQL_APP_CONFIG.apiUrl + 'file/membership/') + '*'));
     $httpBackend.whenGET(new RegExp(escapeRegExp(UQL_APP_CONFIG.apiUrl + 'file/membership/') + '*')).respond(200, returnURL);
 
+    // Deleting memberships
+    $httpBackend.whenDELETE(new RegExp(escapeRegExp(api + '/') + '*')).respond(200, []);
 /*
 
     $httpBackend.whenPOST(
