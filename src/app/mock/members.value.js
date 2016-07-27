@@ -81,7 +81,8 @@
       submittedOn: '2013-07-31 08:13:57',
       confirmedOn: null,
       expiresOn: '28-02-2014',
-      status: 'confirmed'
+      status: 'confirmed',
+      barcode: '2406712312'
     },
     // Unconfirmed Alumni member
     {
