@@ -92,6 +92,11 @@
     <input type="text" ng-model="vm.sacrifice.phone" ng-disabled="!vm.isUpdating" />
   </md-input-container>
 
+  <md-input-container flex="100" flex-gt-sm="30" flex-gt-xs="50" ng-show="vm.sacrifice.status === 'confirmed' || vm.sacrifice.status === 'renewing'">
+    <label>Expires on</label>
+    <input type="text" ng-model="vm.sacrifice.expiresOn" ng-pattern="/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/" ng-disabled="!vm.isUpdating" />
+  </md-input-container>
+
   <md-input-container ng-repeat="item in vm.otherFields()" flex="100" flex-gt-sm="30" flex-gt-xs="50">
     <label class="capitalize">{{item}}</label>
     <input type="text" ng-model="vm.sacrifice[item]" ng-disabled="!vm.isUpdating" />
