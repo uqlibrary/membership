@@ -24,7 +24,19 @@
       submittedOn: '2013-07-31 08:13:57',
       confirmedOn: null,
       expiresOn: '28-02-2014',
-      status: 'unconfirmed'
+      status: 'unconfirmed',
+      attachment_0: {
+        key: "9d7af0e0-4fd0-11e6-86b0-91f5b82c9956.pdf",
+        type: "application/pdf",
+        name: "first_attachment.pdf",
+        size: 102047
+      },
+      attachment_1: {
+        key: "9d7af0e0-4fd0-11e6-86b0-91f5b82c9956.pdf",
+        type: "application/pdf",
+        name: "some_incredibly_long_name_for_a_document.pdf",
+        size: 102047
+      }
     },
     // Unconfirmed ALumniFriends member
     {

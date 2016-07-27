@@ -48,7 +48,7 @@
             </p>
 
             <md-table-container ng-show="vm.searchResults.length > 0">
-              <table md-table>
+              <table md-table class="admin-table">
                 <thead md-head>
                 <tr md-row>
                   <th md-column>Name</th>
@@ -62,16 +62,39 @@
                 <tbody md-body>
                 <tr md-row ng-repeat="m in vm.searchResults">
                   <td md-cell class="md-body-1">
-                    <span class="md-subhead">{{ m.title }} {{ m.firstName }} {{ m.sn }}</span><br />
-                    <span ng-show="m.mail">
+                    {{ m.title }} {{ m.firstName }} {{ m.sn }}<br />
+
+                    <!-- Conditional data -->
+                    <span class="md-body-1" ng-show="m.mail">
                       <a ng-href="mailto:{{m.mail}}?subject=UQ Library Membership Application'">{{m.mail}}</a><br />
                     </span>
-                    <span ng-show="m.paymentReceipt.length > 1">{{m.paymentReceipt}}</span>
-                    <span ng-show="m.alumninewNum">{{m.alumninewNum}}<br /></span>
-                    <span ng-show="m.alumniNum">{{m.alumninewNum}}<br /></span>
-                    <span ng-show="m.alumniBarcode">{{m.alumninewNum}}<br /></span>
+                    <span class="md-body-1 text-muted"
+                        ng-show="m.dateOfBirth">Birthdate: {{ m.dateOfBirth | date : date : format}}<br/></span>
+                    <span class="md-body-1 text-muted" ng-show="m.paymentReceipt.length > 1">Payment receipt: {{m.paymentReceipt}}</span>
+                    <span class="md-body-1 text-muted" ng-show="m.alumninewNum">{{m.alumninewNum}}<br /></span>
+                    <span class="md-body-1 text-muted" ng-show="m.alumniNum">{{m.alumniNum}}<br /></span>
+                    <span class="md-body-1 text-muted" ng-show="m.alumniBarcode">{{m.alumniBarcode}}<br /></span>
                   </td>
-                  <td md-cell>{{vm.accountTypeByValue(m.type).title}}</td>
+                  <td md-cell>
+                    {{vm.accountTypeByValue(m.type).title}}<br />
+
+                    <!-- Conditional data -->
+                    <span class="md-body-1 text-muted"
+                           ng-show="m.cyberschoolAddress_0">{{ m.cyberschoolAddress_0 }}
+                    </span>
+                    <span class="md-body-1 text-muted"
+                           ng-show="m.hospitalService">{{ m.hospitalService }}
+                    </span>
+
+                    <!-- Attachments -->
+                    <div class="membership-attachments" ng-show="m.attachments.length">
+                      <span class="md-body-1" ng-repeat="attachment in m.attachments">
+                        <a ng-click="openAttachment(attachment)" href="">
+                          <md-icon>attachment</md-icon> {{ attachment.name }}
+                        </a><br />
+                      </span>
+                    </div>
+                  </td>
                   <td md-cell>{{m.status}}</td>
                   <td md-cell>{{m.expiry}}</td>
                   <td md-cell>{{m.barcode}}</td>

@@ -70,4 +70,12 @@ membership-admin {
   md-pagination-wrapper {
     width:auto !important;
   }
+
+  .admin-table {
+    td.md-cell {
+      padding: 5px !important;
+      vertical-align: top;
+      font-size: 1em;
+    }
+  }
 }
