@@ -87,7 +87,7 @@
      * @returns {Array}
      */
     vm.otherFields = function () {
-      var ignoredFields = ['title', 'firstName', 'sn', 'homeAddress_0', 'homeAddress_1',
+      var ignoredFields = ['title', 'firstName', 'sn', 'homeAddress_0', 'homeAddress_1', 'id',
         'homeAddress_city', 'homeAddress_state', 'homeAddress_postcode', 'phone', 'mail', 'expiresOn'];
       var fields = [];
 

@@ -30,11 +30,21 @@ membership-admin {
     padding: 0;
 
     tr {
-      .md-button.mini {
-        padding: 0 10px;
-        min-height: 28px;
-        line-height: 28px;
-        margin-left: 0;
+      td {
+        position: relative;
+
+        .md-button.mini {
+          padding: 0 10px;
+          min-height: 28px;
+          line-height: 28px;
+          margin-left: 0;
+        }
+
+        .md-button.edit-button {
+          position: absolute;
+          top: -5px;
+          right: 0;
+        }
       }
     }
 
