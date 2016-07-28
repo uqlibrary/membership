@@ -56,24 +56,30 @@
                   <th md-column hide-sm>Status</th>
                   <th md-column hide-sm>Expiry</th>
                   <th md-column hide-sm>Barcode</th>
-                  <th md-column>Actions</th>
                 </tr>
                 </thead>
                 <tbody md-body>
                 <tr md-row ng-repeat="m in vm.searchResults">
                   <td md-cell class="md-body-1">
-                    {{ m.title }} {{ m.firstName }} {{ m.sn }}<br />
+                    <div layout="column" layout-gt-xs="row">
+                      <div flex>
+                        {{ m.title }} {{ m.firstName }} {{ m.sn }}<br />
 
-                    <!-- Conditional data -->
-                    <span class="md-body-1" ng-show="m.mail">
+                        <!-- Conditional data -->
+                        <span class="md-body-1" ng-show="m.mail">
                       <a ng-href="mailto:{{m.mail}}?subject=UQ Library Membership Application'">{{m.mail}}</a><br />
                     </span>
-                    <span class="md-body-1 text-muted"
-                        ng-show="m.dateOfBirth">Birthdate: {{ m.dateOfBirth | date : date : format}}<br/></span>
-                    <span class="md-body-1 text-muted" ng-show="m.paymentReceipt.length > 1">Payment receipt: {{m.paymentReceipt}}</span>
-                    <span class="md-body-1 text-muted" ng-show="m.alumninewNum">{{m.alumninewNum}}<br /></span>
-                    <span class="md-body-1 text-muted" ng-show="m.alumniNum">{{m.alumniNum}}<br /></span>
-                    <span class="md-body-1 text-muted" ng-show="m.alumniBarcode">{{m.alumniBarcode}}<br /></span>
+                        <span class="md-body-1 text-muted"
+                              ng-show="m.dateOfBirth">Birthdate: {{ m.dateOfBirth | date : date : format}}<br/></span>
+                        <span class="md-body-1 text-muted" ng-show="m.paymentReceipt.length > 1">Payment receipt: {{m.paymentReceipt}}</span>
+                        <span class="md-body-1 text-muted" ng-show="m.alumninewNum">{{m.alumninewNum}}<br /></span>
+                        <span class="md-body-1 text-muted" ng-show="m.alumniNum">{{m.alumniNum}}<br /></span>
+                        <span class="md-body-1 text-muted" ng-show="m.alumniBarcode">{{m.alumniBarcode}}<br /></span>
+                      </div>
+                      <div flex="none">
+                        <md-button ng-if="!m._deleted" class="md-secondary md-raised mini" ng-click="vm.openMember(m)">View / Edit</md-button>
+                      </div>
+                    </div>
                   </td>
                   <td md-cell>
                     {{vm.accountTypeByValue(m.type).title}}<br />
@@ -94,6 +100,11 @@
                         </a><br />
                       </span>
                     </div>
+                  </td>
+                  <td md-cell hide-sm>{{m.expiresOn}}</td>
+                  <td md-cell hide-sm>
+                    <span ng-show="m.barcode">{{ m.barcode }}</span>
+                    <span ng-hide="m.barcode">Not set</span>
                   </td>
                   <td md-cell hide-sm class="capitalize">
                     {{m.status}}<br />
@@ -130,14 +141,6 @@
                           disabled="disabled"
                           ng-show="m.confirmStep == 1 || m.confirmStep == 2">In Progress</md-button>
                     </span>
-                  </td>
-                  <td md-cell hide-sm>{{m.expiresOn}}</td>
-                  <td md-cell hide-sm>
-                    <span ng-show="m.barcode">{{ m.barcode }}</span>
-                    <span ng-hide="m.barcode">Not set</span>
-                  </td>
-                  <td md-cell>
-                    <md-button ng-if="!m._deleted" class="md-secondary md-raised mini" ng-click="vm.openMember(m)">View / Edit</md-button>
                   </td>
                 </tr>
                 </tbody>
