@@ -16,6 +16,7 @@
 
     vm.isAllowed = true;
     vm.accountTypes = [];
+    vm.cyberschools = [];
     vm.search = {};
     vm.selectedTabIndex = 0;
     vm.isSearching = false;
@@ -146,7 +147,6 @@
       });
     };
 
-
     /**
      * CSV Headers and data
      * @type {string[]}
@@ -156,12 +156,12 @@
       var r = [];
       lodash.forEach(vm.searchResults, function (m) {
         r.push({
-          name : m.title + ' ' + m.firstName + ' ' + m.sn,
-          email : m.mail,
-          type : vm.accountTypes[m.type],
-          expiry : m.expiresOn,
-          barcode : m.barcode
-        })
+          name: m.title + ' ' + m.firstName + ' ' + m.sn,
+          email: m.mail,
+          type: vm.accountTypes[m.type],
+          expiry: m.expiresOn,
+          barcode: m.barcode
+        });
       });
       return r;
     };
@@ -182,6 +182,10 @@
 
       MembershipService.get().then(function (data) {
         vm.accountTypes = data.accountTypes;
+      });
+
+      MembershipService.getCyberschools().then(function (data) {
+        vm.cyberschools = data;
       });
     };
 

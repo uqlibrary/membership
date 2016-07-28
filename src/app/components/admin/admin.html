@@ -21,6 +21,19 @@
         <div class="md-errors-spacer"></div> <!-- Bit of a Material hack (display only) -->
       </md-input-container>
 
+      <md-autocomplete flex="auto"
+                       ng-show="vm.search.type === 'cyberschool'"
+                       md-input-name="cybeschool"
+                       md-selected-item="vm.search.cyberschoolAddress_0"
+                       md-search-text="vm.cyberschoolSearchText"
+                       md-items="item in vm.cyberschools"
+                       md-item-text="item"
+                       md-floating-label="School Name">
+        <md-item-template>
+          <span md-highlight-text="vm.cyberschoolSearchText">{{item}}</span>
+        </md-item-template>
+      </md-autocomplete>
+
       <div flex="1" class="button-container">
         <md-button class="md-accent md-raised search-button" ng-click="vm.doSearch()">
           <md-icon class="search-icon">search</md-icon> Search

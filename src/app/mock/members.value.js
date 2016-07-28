@@ -126,9 +126,9 @@
     {
       id: '00000000-0000-0000-0000-000000000006',
       mail: 'j.wisgerhof@library.uq.edu.au',
-      type: 'alumni',
+      type: 'cyberschool',
       title: 'Mr',
-      firstName: 'Alumni',
+      firstName: 'Cyberschool',
       sn: 'In Progress',
       homeAddress_0: 'UQ Library',
       homeAddress_city: 'Brisbane',
@@ -140,7 +140,8 @@
       confirmedOn: null,
       expiresOn: '28-02-2014',
       status: 'unconfirmed',
-      confirmStep: 1
+      confirmStep: 1,
+      cyberschoolAddress_0: 'School A'
     }
   ]);
 })();

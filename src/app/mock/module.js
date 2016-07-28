@@ -37,6 +37,13 @@
           }
         }
 
+        // Cyberschool filter
+        if (params['filter[cyberschoolAddress_0]']) {
+          if (!member.cyberschoolAddress_0.match(new RegExp(params['filter[cyberschoolAddress_0]']))) {
+            return false;
+          }
+        }
+
         r.push(member);
       });
       // Return members that fit the filter
