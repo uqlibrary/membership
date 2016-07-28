@@ -146,6 +146,26 @@
       });
     };
 
+
+    /**
+     * CSV Headers and data
+     * @type {string[]}
+     */
+    vm.csvHeaders = ['Name', 'Email', 'Type', 'Expiry', 'Barcode'];
+    vm.csvData = function () {
+      var r = [];
+      lodash.forEach(vm.searchResults, function (m) {
+        r.push({
+          name : m.title + ' ' + m.firstName + ' ' + m.sn,
+          email : m.mail,
+          type : vm.accountTypes[m.type],
+          expiry : m.expiresOn,
+          barcode : m.barcode
+        })
+      });
+      return r;
+    };
+
     /**
      * Initiates the controller
      */

@@ -7,6 +7,7 @@ var mock = mock || false;
     'ngMaterial',
     'ngCookies',
     'ngSanitize',
+    'ngCsv',
     'ngFileUpload',
     'md.data.table',
     'ngLodash',

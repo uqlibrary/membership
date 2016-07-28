@@ -21,9 +21,18 @@
         <div class="md-errors-spacer"></div> <!-- Bit of a Material hack (display only) -->
       </md-input-container>
 
-      <div flex="1" class="search-container">
+      <div flex="1" class="button-container">
         <md-button class="md-accent md-raised search-button" ng-click="vm.doSearch()">
           <md-icon class="search-icon">search</md-icon> Search
+        </md-button>
+      </div>
+
+      <div flex="none" class="button-container" ng-show="vm.searchResults.length > 0">
+        <md-button class="md-secondary md-raised"
+                ng-csv="vm.csvData()"
+                csv-header="vm.csvHeaders"
+                filename="memberships.csv">
+          <md-icon>file_download</md-icon> CSV export
         </md-button>
       </div>
     </md-content>
@@ -53,9 +62,9 @@
                 <tr md-row>
                   <th md-column>Name</th>
                   <th md-column>Type</th>
-                  <th md-column hide-sm>Status</th>
                   <th md-column hide-sm>Expiry</th>
                   <th md-column hide-sm>Barcode</th>
+                  <th md-column hide-sm>Status</th>
                 </tr>
                 </thead>
                 <tbody md-body>
