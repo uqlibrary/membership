@@ -98,7 +98,14 @@
                   <td md-cell hide-sm class="capitalize">
                     {{m.status}}<br />
                     <span ng-if="m.status === 'renewing'">
-                      <md-button ng-hide="m._confirming" class="md-primary md-raised mini">Re-confirm</md-button>
+                      <md-button
+                          ng-hide="m._confirming || m.confirmStep == 1 || m.confirmStep == 2"
+                          ng-click="vm.confirmMember(m)"
+                          class="md-primary md-raised mini">Re-confirm</md-button>
+                      <md-button
+                          ng-hide="m._confirming || m.confirmStep == 1 || m.confirmStep == 2"
+                          ng-click="vm.sendRenewalEmail(m)"
+                          class="md-accent md-raised mini">Resend email</md-button>
                     </span>
                     <span ng-if="m.status === 'unconfirmed'">
                       <span ng-hide="m._deleted || m._confirming">
@@ -110,16 +117,18 @@
                             class="md-secondary md-raised mini"
                             ng-hide="m.confirmStep == 1 || m.confirmStep == 2"
                             ng-click="vm.showDeleteDialog(m)">Delete</md-button>
-                        <md-button
-                          class="md-secondary md-raised mini"
-                          disabled="disabled"
-                          ng-show="m.confirmStep == 1 || m.confirmStep == 2">In Progress</md-button>
                       </span>
                       <span ng-show="m._confirming">
                         <md-progress-circular md-mode="indeterminate" md-diameter="18"></md-progress-circular>
                         <span style="padding-left: 30px">Confirming..</span>
                       </span>
                       <span class="md-body-2" ng-show="m._deleted">DELETED</span>
+
+                      <!-- Confirm in progress -->
+                      <md-button
+                          class="md-secondary md-raised mini"
+                          disabled="disabled"
+                          ng-show="m.confirmStep == 1 || m.confirmStep == 2">In Progress</md-button>
                     </span>
                   </td>
                   <td md-cell hide-sm>{{m.expiresOn}}</td>

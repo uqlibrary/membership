@@ -14,7 +14,7 @@
     });
 
   /** @ngInject **/
-  function AdminDetailsMembershipController(lodash, $mdDialog, MembershipService, $mdToast) {
+  function AdminDetailsMembershipController(lodash, $mdDialog, MembershipService, ToastService) {
     var vm = this;
 
     vm.isUpdating = false;
@@ -69,16 +69,14 @@
 
       // Save in DB
       MembershipService.submit(vm.member).then(function (data) {
-        $mdToast.show(
-          $mdToast.simple().textContent('Membership was updated')
-        );
+        ToastService.showSimple('Membership was updated');
 
         // Update the open instance of this data
         vm.member = data;
         vm.createSacrifice();
         vm.isUpdating = false;
       }, function (error) {
-        $mdToast.show($mdToast.simple().textContent(error));
+        ToastService.showSimple(error);
       });
     };
 

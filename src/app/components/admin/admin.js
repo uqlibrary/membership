@@ -11,7 +11,7 @@
     });
 
   /** @ngInject **/
-  function AdminMembershipController(MembershipService, UQLAccountService, $window, lodash, FileService, $mdToast, $mdDialog) {
+  function AdminMembershipController(MembershipService, UQLAccountService, $window, lodash, FileService, ToastService, $mdDialog) {
     var vm = this;
 
     vm.isAllowed = true;
@@ -81,6 +81,22 @@
     };
 
     /**
+     * Re-sends the renewal email to a member
+     * @param m
+     */
+    vm.sendRenewalEmail = function (m) {
+      MembershipService.resendEmail(m.id).then(function (value) {
+        if (value) {
+          ToastService.showSimple('Renewal email sent successfully');
+        } else {
+          ToastService.showSimple('Unfortunately, the renewal email could not be sent. Please try again later');
+        }
+      }, function () {
+        ToastService.showSimple('Unable to send email');
+      });
+    };
+
+    /**
      * @description Opens a new window with the file attachment
      * @param {Object} attachment
      * @returns {String}
@@ -89,7 +105,7 @@
       FileService.getSignedUrl(attachment.key).then(function (data) {
         $window.open(data);
       }, function () {
-        $mdToast.show($mdToast.simple().textContent('Unable to load file'));
+        ToastService.showSimple('Unable to load file');
       });
     };
 
@@ -106,9 +122,9 @@
       $mdDialog.show(confirm).then(function () {
         MembershipService.deleteMembership(member.id).then(function () {
           member._deleted = true;
-          $mdToast.show($mdToast.simple().textContent('Member deleted'));
+          ToastService.showSimple('Member deleted');
         }, function () {
-          $mdToast.show($mdToast.simple().textContent('Unable to delete member'));
+          ToastService.showSimple('Unable to delete member');
         });
       });
     };
@@ -121,10 +137,10 @@
       member._confirming = true;
       MembershipService.confirm(member).then(function (data) {
         lodash.merge(member, data.user);
-        $mdToast.show($mdToast.simple().textContent('Member confirmed'));
+        ToastService.showSimple('Member confirmed');
       }, function (data) {
         lodash.merge(member, data.user);
-        $mdToast.show($mdToast.simple().textContent(data.message));
+        ToastService.showSimple(data.message);
       }).finally(function () {
         member._confirming = false;
       });
