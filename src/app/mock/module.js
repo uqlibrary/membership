@@ -6,7 +6,7 @@
     .run(runBlock);
 
   /** @ngInject **/
-  function runBlock($httpBackend, UQL_APP_CONFIG, MockMembershipFormData, MockMembershipCyberschools, MockMemberships) {
+  function runBlock($httpBackend, UQL_APP_CONFIG, MockMembershipFormData, MockMembershipCyberschools, MockMemberships, MockMembershipTypesData) {
     var api = UQL_APP_CONFIG.apiUrl + 'membership';
 
     function escapeRegExp(str) {
@@ -16,7 +16,13 @@
     // General GET requests
     $httpBackend.whenGET(api).respond(200, MockMembershipFormData);
     $httpBackend.whenGET(api + '/cyberschools').respond(200, MockMembershipCyberschools);
-    $httpBackend.whenGET(new RegExp(escapeRegExp(api + '_types?') + '([0-9]*)')).respond(200, MockMembershipFormData.type);
+    $httpBackend.whenGET(new RegExp(escapeRegExp(api + '_types?') + '([0-9]*)')).respond(200, MockMembershipTypesData);
+
+    // Update membership type
+    $httpBackend.whenPOST(new RegExp(escapeRegExp(api + '_type/') + '[a-zA-Z]*')).respond(function (method, url, data) {
+      var d = angular.fromJson(data);
+      return [200, {id: d.value, expiry: d.expiry}];
+    });
 
     // Get members. Working filter included
     $httpBackend.whenGET(new RegExp(escapeRegExp(api + 's?') + '([0-9]*)')).respond(function (method, url, data, headers, params) {
@@ -81,7 +87,7 @@
     });
 
     // New membership / update
-    $httpBackend.whenPOST(new RegExp(escapeRegExp(api + '/') + '*')).respond(function (method, url, data) {
+    $httpBackend.whenPOST(new RegExp(escapeRegExp(api + '/membership') + '*')).respond(function (method, url, data) {
       data = angular.fromJson(data);
       if (!data.id) {
         data.id = '00000000-0000-0000-0000-000000000001';

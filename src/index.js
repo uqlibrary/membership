@@ -15,7 +15,8 @@ var mock = mock || false;
 
     /** UQL APP dependencies */
     'uql.app.account',
-    'uql.app.config'
+    'uql.app.config',
+    'uqlSignature'
   ];
 
   if (mock) {

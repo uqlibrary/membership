@@ -1,5 +1,11 @@
 <md-content layout-padding>
-  <h1 class="md-display-1">UQ Library Membership <span class="md-headline">Admin</span></h1>
+  <div layout="row" layout-align="space-between center">
+    <h1 flex="auto" class="md-display-1">UQ Library Membership <span class="md-headline">Admin</span></h1>
+    <md-button flex="none" class="md-secondary md-raised" ng-click="vm.openSettings()">
+      <md-icon>settings</md-icon>
+      Settings
+    </md-button>
+  </div>
 
   <span class="md-error" ng-if="!vm.isAllowed">
     You do not have permission to access this resource.

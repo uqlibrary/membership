@@ -23,5 +23,9 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('admin', {
       url: '/admin',
       template: '<membership-admin></membership-admin>'
+    })
+    .state('admin/settings', {
+      url: '/admin/settings',
+      template: '<membership-admin-settings></membership-admin-settings>'
     });
 }

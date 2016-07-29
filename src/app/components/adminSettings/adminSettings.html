@@ -1,0 +1,59 @@
+<md-content layout-padding>
+  <div layout="row" layout-align="space-between center">
+    <h1 flex="auto" class="md-display-1">UQ Library Membership <span class="md-headline">Settings</span></h1>
+    <md-button flex="none" class="md-secondary md-raised" ng-click="vm.goToAdmin()">
+      <md-icon>arrow_back</md-icon>
+      Back to Admin
+    </md-button>
+  </div>
+
+  <md-content layout="column" layout-gt-xs="row" layout-align="space-around start">
+    <md-card flex="50">
+      <md-card-title>
+        <h2>Global Expiry Date</h2>
+      </md-card-title>
+      <md-card-content>
+        <p class="md-body-1">
+          The default expiry date for all membership types. This can be overridden below for each type of membership.
+        </p>
+
+        <div layout="row" layout-align="start center">
+          <md-input-container flex="1">
+            <label>Global</label>
+            <input type="text"
+                   ng-model="vm.defaultExpiry"
+                   ng-required="true"
+                   ng-pattern="/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/" />
+          </md-input-container>
+          <div flex="none">
+            <md-button class="md-secondary md-raised" ng-click="vm.updateGlobalExpiry()">Update</md-button>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+
+    <md-card flex="50">
+      <md-card-title>
+        <h2>Expiry Dates By Type</h2>
+      </md-card-title>
+      <md-card-content>
+        <p class="md-body-1">
+          Override the default global expiry date for each type of membership.<br />
+        </p>
+
+        <div class="settings-row" layout="row" layout-align="start center" ng-repeat="item in vm.accountTypes">
+          <md-input-container flex="1">
+            <label>{{item.title}}</label>
+            <input type="text"
+                   ng-model="item.expiry"
+                   ng-required="true"
+                   ng-pattern="/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}$/" />
+          </md-input-container>
+          <div flex="none">
+            <md-button class="md-secondary md-raised" ng-click="vm.updateExpiry(item)">Update</md-button>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+  </md-content>
+</md-content>

@@ -11,7 +11,7 @@
     });
 
   /** @ngInject **/
-  function AdminMembershipController(MembershipService, UQLAccountService, $window, lodash, FileService, ToastService, $mdDialog) {
+  function AdminMembershipController(MembershipService, UQLAccountService, $window, lodash, FileService, ToastService, $mdDialog, $state) {
     var vm = this;
 
     vm.isAllowed = true;
@@ -164,6 +164,13 @@
         });
       });
       return r;
+    };
+
+    /**
+     * Opens the settings page
+     */
+    vm.openSettings = function () {
+      $state.go('admin/settings');
     };
 
     /**
