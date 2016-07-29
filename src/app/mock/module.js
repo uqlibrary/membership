@@ -44,6 +44,13 @@
           }
         }
 
+        // Confirmed filter
+        if (params['filter[status]']) {
+          if (!member.status.match(new RegExp(params['filter[status]']))) {
+            return false;
+          }
+        }
+
         r.push(member);
       });
       // Return members that fit the filter
