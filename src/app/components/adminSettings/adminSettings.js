@@ -39,7 +39,7 @@
      * @param type
      */
     vm.updateExpiry = function (type) {
-      MembershipService.updateType(type).then(function (d) {
+      MembershipService.updateType(type).then(function () {
         ToastService.showSimple('Expiry date updated');
       }, function () {
         ToastService.showSimple('Could not update expiry date');
