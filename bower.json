@@ -6,7 +6,7 @@
     "angular-ui-router": "^0.3.1",
     "angular-material": "v1.1.0-rc.5",
     "uqlapp-config": "uqlibrary/uqlapp-config#^0.0.2",
-    "uqlapp-account": "uqlibrary/uqlapp-account#^0.0.8",
+    "uqlapp-account": "uqlibrary/uqlapp-account#^0.1.0",
     "angular-cookies": "^1.5.7",
     "angular-mocks": "^1.5.7",
     "angular-sanitize": "^1.5.7",

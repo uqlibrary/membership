@@ -185,10 +185,14 @@
         if (data.hasSession === false) {
           $window.location.href = "https://www.library.uq.edu.au/";
         } else if (MembershipService.isAdmin(data) === false) {
+          UQLAccountService.login();
           vm.isAllowed = false;
         } else {
           vm.isAllowed = true;
         }
+      }, function () {
+        UQLAccountService.login();
+        vm.isAllowed = false;
       });
 
       MembershipService.get().then(function (data) {
