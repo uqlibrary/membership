@@ -11,7 +11,8 @@
     });
 
   /** @ngInject **/
-  function AdminMembershipController(MembershipService, UQLAccountService, $window, lodash, FileService, ToastService, $mdDialog, $state) {
+  function AdminMembershipController(MembershipService, UQLAccountService, $window, lodash, FileService, ToastService,
+                                     $mdDialog, $state, $timeout) {
     var vm = this;
 
     vm.isAllowed = true;
@@ -78,7 +79,10 @@
         vm.openUsers[i] = m;
       }
 
-      vm.selectedTabIndex = i + 1;
+      // Wait a bit for Angular to load the new tab. Then switch to it
+      $timeout(function () {
+        vm.selectedTabIndex = i + 1;
+      }, 150);
     };
 
     /**
