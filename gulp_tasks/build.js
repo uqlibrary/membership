@@ -10,6 +10,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const uglifySaveLicense = require('uglify-save-license');
 const inject = require('gulp-inject');
 const ngAnnotate = require('gulp-ng-annotate');
+const replace = require('gulp-replace');
 
 const conf = require('../conf/gulp.conf');
 
@@ -28,6 +29,8 @@ function build() {
   const cssFilter = filter(conf.path.tmp('**/*.css'), {restore: true});
 
   return gulp.src(conf.path.tmp('/index.html'))
+    .pipe(replace('<!-- buildonly', ''))
+    .pipe(replace('//buildonly -->', ''))
     .pipe(inject(partialsInjectFile, partialsInjectOptions))
     .pipe(useref())
     .pipe(jsFilter)
