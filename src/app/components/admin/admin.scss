@@ -5,16 +5,13 @@ membership-admin {
         margin-bottom: 0;
       }
 
-      .button-container {
-        padding: 14px;
+      .search-button {
+        padding-right: 10px;
+        margin-left: 20px;
 
-        .search-button {
-          padding-right: 10px;
-
-          .search-icon {
-            font-size: 20px;
-            line-height: 24px;
-          }
+        .search-icon {
+          font-size: 20px;
+          line-height: 24px;
         }
       }
 

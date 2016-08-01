@@ -178,6 +178,20 @@
     };
 
     /**
+     * Filters the cyberschool dropdown
+     * @returns {Array}
+     */
+    vm.searchCyberschools = function () {
+      var results = [];
+      lodash.forEach(vm.cyberschools, function (value) {
+        if (value.match(new RegExp(vm.search.cyberschoolAddress_0, 'gi'))) {
+          results.push(value);
+        }
+      });
+      return results;
+    };
+
+    /**
      * Initiates the controller
      */
     vm.init = function () {
