@@ -1,6 +1,6 @@
 'use strict';
 
-describe('The main membership view', function () {
+describe('The admin settings view', function () {
   var page;
 
   beforeEach(function () {
