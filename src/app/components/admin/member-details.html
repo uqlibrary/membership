@@ -4,21 +4,21 @@
     <h2>Account Information</h2>
   </span>
   <div flex-none ng-show="!vm.isUpdating">
-    <md-button class="md-primary md-raised md-mini" ng-click="vm.allowUpdates()">
+    <md-button class="md-primary md-raised md-mini allow-updating" ng-click="vm.allowUpdates()">
       <md-icon>lock_open</md-icon>
       Allow updating
     </md-button>
   </div>
 
   <div flex-none ng-show="vm.isUpdating" ng-click="vm.cancel()">
-    <md-button class="md-secondary md-raised md-mini">
+    <md-button class="md-secondary md-raised md-mini cancel-update">
       <md-icon>clear</md-icon>
       Cancel
     </md-button>
   </div>
 
   <div flex-none ng-show="vm.isUpdating">
-    <md-button class="md-primary md-raised md-mini" ng-click="vm.save()">
+    <md-button class="md-primary md-raised md-mini save-update" ng-click="vm.save()">
       <md-icon>save</md-icon>
       Save
     </md-button>

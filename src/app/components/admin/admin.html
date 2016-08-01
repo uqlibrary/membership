@@ -35,6 +35,8 @@
                        md-input-name="cyberschool"
                        md-search-text="vm.search.cyberschoolAddress_0"
                        md-items="item in vm.searchCyberschools()"
+                       md-select-on-match
+                       md-match-case-insensitive="true"
                        md-floating-label="School Name">
         <md-item-template>
           <span md-highlight-text="vm.search.cyberschoolAddress_0">{{item}}</span>
@@ -117,7 +119,11 @@
                         <span class="md-body-1 text-muted" ng-show="m.alumniBarcode">{{m.alumniBarcode}}<br /></span>
                       </div>
                       <div flex="none">
-                        <md-button ng-if="!m._deleted" class="md-secondary md-raised mini" ng-click="vm.openMember(m)">View / Edit</md-button>
+                        <md-button ng-if="!m._deleted"
+                                   class="md-secondary md-raised mini view-button"
+                                   ng-click="vm.openMember(m)">
+                          View / Edit
+                        </md-button>
                       </div>
                     </div>
                   </td>
@@ -147,7 +153,7 @@
                     <span ng-hide="m.barcode">Not set</span>
                   </td>
                   <td md-cell hide-sm class="capitalize">
-                    {{m.status}}<br />
+                    <span ng-if="!m._deleted">{{m.status}}<br /></span>
                     <span ng-if="m.status === 'renewing'">
                       <md-button
                           ng-hide="m._confirming || m.confirmStep == 1 || m.confirmStep == 2"
@@ -156,16 +162,16 @@
                       <md-button
                           ng-hide="m._confirming || m.confirmStep == 1 || m.confirmStep == 2"
                           ng-click="vm.sendRenewalEmail(m)"
-                          class="md-accent md-raised mini">Resend email</md-button>
+                          class="md-accent md-raised mini resend-button">Resend email</md-button>
                     </span>
                     <span ng-if="m.status === 'unconfirmed'">
                       <span ng-hide="m._deleted || m._confirming">
                         <md-button
-                            class="md-primary md-raised mini"
+                            class="md-primary md-raised mini confirm-button"
                             ng-hide="m.confirmStep == 1 || m.confirmStep == 2"
                             ng-click="vm.confirmMember(m)">Accept</md-button>
                         <md-button
-                            class="md-secondary md-raised mini"
+                            class="md-secondary md-raised mini delete-button"
                             ng-hide="m.confirmStep == 1 || m.confirmStep == 2"
                             ng-click="vm.showDeleteDialog(m)">Delete</md-button>
                       </span>
