@@ -16,7 +16,7 @@ var gulp = require('gulp');
 var replace = require('gulp-replace');
 var rename = require('gulp-rename');
 var gutil = require('gulp-util');
-var cloudFront = require('gulp-invalidate-cloudfront');
+var cloudFront = require('gulp-cloudfront-invalidate-aws-publish');
 var awsPublish = require('gulp-awspublish');
 
 var subDir = '/membership';
@@ -51,6 +51,12 @@ function awsDeploy() {
     }
   };
 
+  var cfConfig = {
+    distribution: process.env.CFDistribution,
+    accessKeyId: process.env.AWSAccessKeyId,
+    secretAccessKey: process.env.AWSSecretKey
+  };
+
   // create a new publisher using S3 options taken from the environment
   var publisher = awsPublish.create(awsConfig, {});
 
@@ -65,5 +71,6 @@ function awsDeploy() {
     }))
     .pipe(awsPublish.gzip())
     .pipe(publisher.publish(headers, { force: true }))
+    .pipe(cloudFront(cfConfig))
     .pipe(awsPublish.reporter());
 }
