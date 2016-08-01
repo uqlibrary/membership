@@ -89,7 +89,6 @@ describe('The main membership view', function () {
 
     // Now accept the deletion
     page.resultRows.get(0).all(by.css('.delete-button')).click();
-    browser.ignoreSynchronization = true; // Do not wait for toast
     page.modal.confirm.click();
     expect(page.resultRows.get(0).all(by.css('td')).get(4).getText()).toMatch(/DELETED/);
   });
@@ -118,7 +117,6 @@ describe('The main membership view', function () {
     expect(page.tabs.contents.active.element(by.model('vm.sacrifice.firstName')).isEnabled()).toBeTruthy();
     page.tabs.contents.active.element(by.model('vm.sacrifice.firstName')).clear().then(function () {
       page.tabs.contents.active.element(by.model('vm.sacrifice.firstName')).sendKeys('test_name');
-      browser.ignoreSynchronization = true; // Do not wait for toast
       page.tabs.contents.active.element(by.css('.save-update')).click();
       expect(page.tabs.headings.active.getText()).toMatch(/TEST_NAME/);
     });
