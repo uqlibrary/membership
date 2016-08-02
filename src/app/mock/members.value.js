@@ -106,12 +106,14 @@
     // Renewing Alumni member
     {
       id: '00000000-0000-0000-0000-000000000005',
+      code: '00000000-0000-0000-0000-000000000005',
       mail: 'j.wisgerhof@library.uq.edu.au',
       type: 'alumni',
       title: 'Mr',
       firstName: 'Alumni',
       sn: 'Person',
       homeAddress_0: 'UQ Library',
+      homeAddress_1: 'St Lucia',
       homeAddress_city: 'Brisbane',
       homeAddress_state: 'QLD',
       homeAddress_postcode: '4072',
@@ -120,7 +122,10 @@
       submittedOn: '2013-07-31 08:13:57',
       confirmedOn: null,
       expiresOn: '28-02-2014',
-      status: 'renewing'
+      status: 'renewing',
+      alumniNum: 's123456789',
+      alumniGraduated: 2010,
+      alumniAwards: 'Bachelor of IT'
     },
     // Confirmation in progress member
     {

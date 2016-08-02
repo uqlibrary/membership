@@ -13,7 +13,7 @@ var FormPage = function() {
   this.form.title = this.form.all(by.model('vm.form.title')).get(0); // md-select
   this.form.firstName = this.form.element(by.model('vm.form.firstName'));
   this.form.sn = this.form.element(by.model('vm.form.sn'));
-  this.form.dob = this.form.element(by.model('vm.form.dateOfBirth'));
+  this.form.dob = this.form.element(by.model('vm.dateOfBirth'));
 
   // Contact Information
   this.form.email = this.form.element(by.model('vm.form.mail'));

@@ -11,7 +11,8 @@
       });
 
   /** @ngInject **/
-  function MembershipFormController(MembershipService, $stateParams, UQL_APP_CONFIG, lodash, UploadBase, $state) {
+  function MembershipFormController(MembershipService, $stateParams, UQL_APP_CONFIG, lodash, UploadBase,
+                                    $state, UQLAccountService, $timeout, moment) {
     var vm = this;
 
     vm.type = $stateParams.type;
@@ -127,11 +128,9 @@
      * Submits the membership application / renewal
      */
     vm.submit = function () {
-      lodash.forEach(vm.formController.$error.required, function (i) {
-        console.log(i.$name);
-      });
       vm.formController.$setSubmitted();
       vm.isSubmitting = true;
+      vm.form.dateOfBirth = moment(vm.dateOfBirth).format("DD-MM-YYYY");
 
       if (vm.isType('community')) {
         vm.form.paymentCode = vm.typeObject.paymentOptions[0].code;
@@ -154,9 +153,24 @@
     };
 
     /**
+     * Touches the form to make it dirty
+     */
+    vm.dirtifyForm = function () {
+      $timeout(function () {
+        angular.forEach(vm.formController.$error, function (type) {
+          angular.forEach(type, function (field) {
+            field.$setTouched();
+            field.$setDirty();
+          });
+        });
+      });
+    };
+
+    /**
      * Initiates the controller
      */
     vm.init = function () {
+      // Load general membership data
       MembershipService.get().then(function (data) {
         // Set current type object
         angular.forEach(data.accountTypes, function (t) {
@@ -169,6 +183,32 @@
         vm.hospitalData = data.hospital;
         vm.reciprocalData = data.reciprocal;
       });
+
+      // Handle renewals
+      if ($stateParams.hasOwnProperty('code') && $stateParams.hasOwnProperty('id')) {
+        // The user has to be logged in
+        UQLAccountService.getAccount().then(function (user) {
+          if (user.hasSession) {
+            // Get member by given ID and code
+            MembershipService.getWithCode($stateParams.id, $stateParams.code).then(function (data) {
+              vm.isRenewing = true;
+              vm.form = data;
+
+              var dateParts = data.dateOfBirth.split('-');
+              vm.dateOfBirth = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+
+              // Force all error fields to be dirty and touched
+              vm.dirtifyForm();
+            }, function () {
+              $state.go('renewed');
+            });
+          } else {
+            UQLAccountService.login();
+          }
+        }, function () {
+          UQLAccountService.login();
+        });
+      }
 
       if (vm.type === 'cyberschool') {
         MembershipService.getCyberschools().then(function (data) {

@@ -37,7 +37,7 @@
           <!-- Title -->
           <md-input-container flex="100" flex-gt-sm="20">
             <label>Title</label>
-            <md-select ng-model="vm.form.title" ng-required="true" name="title">
+            <md-select ng-model="vm.form.title" ng-required="true" name="title" ng-disabled="vm.isRenewing">
               <md-option ng-repeat="title in vm.titles" value="{{title}}">{{title}}</md-option>
             </md-select>
           </md-input-container>
@@ -45,13 +45,13 @@
           <!-- First Name -->
           <md-input-container flex="100" flex-gt-sm="20">
             <label>First name</label>
-            <input ng-model="vm.form.firstName" type="text" ng-required="true" name="firstName" />
+            <input ng-model="vm.form.firstName" type="text" ng-required="true" name="firstName" ng-disabled="vm.isRenewing" />
           </md-input-container>
 
           <!-- Surname -->
           <md-input-container flex="100" flex-gt-sm="20">
             <label>Last name</label>
-            <input ng-model="vm.form.sn" type="text" ng-required="true" name="sn" />
+            <input ng-model="vm.form.sn" type="text" ng-required="true" name="sn" ng-disabled="vm.isRenewing" />
           </md-input-container>
         </div>
 
@@ -59,7 +59,7 @@
           <!-- DOB -->
           <div layout="column" flex>
             <label class="md-caption">Date of Birth</label>
-            <md-datepicker class="layout-row" flex="100" ng-model="vm.form.dateOfBirth" name="dob"></md-datepicker>
+            <md-datepicker class="layout-row" flex="100" ng-model="vm.dateOfBirth" name="dob" ng-disabled="vm.isRenewing"></md-datepicker>
           </div>
         </div>
       </md-card-content>
