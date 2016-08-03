@@ -9,7 +9,8 @@ function scripts() {
   return gulp.src(conf.path.src('**/*.js'))
     .pipe(eslint({
       rules: {
-        camelcase: "off"
+        camelcase: "off",
+        "linebreak-style": "off"
       }
     }))
     .pipe(eslint.format())

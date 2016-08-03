@@ -123,7 +123,7 @@
       confirmedOn: null,
       expiresOn: '28-02-2014',
       status: 'renewing',
-      alumniNum: 's123456789',
+      alumniNum: 's1234567',
       alumniGraduated: 2010,
       alumniAwards: 'Bachelor of IT'
     },

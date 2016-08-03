@@ -86,6 +86,15 @@
       return [200, {error: false, user: data}];
     });
 
+    // Renewing memberships
+    // Confirming memberships
+    var renewRegEx = escapeRegExp(api + '/') + '([0-9]*-[0-9]*-[0-9]*-[0-9]*-[0-9]*)' + escapeRegExp('/');
+    renewRegEx += '([0-9]*-[0-9]*-[0-9]*-[0-9]*-[0-9]*)' + escapeRegExp('/renew');
+    $httpBackend.whenPOST(new RegExp(renewRegEx)).respond(function (method, url, data) {
+      data = angular.fromJson(data);
+      return [200, data];
+    });
+
     // New membership / update
     $httpBackend.whenPOST(new RegExp(escapeRegExp(api + '/membership') + '*')).respond(function (method, url, data) {
       data = angular.fromJson(data);

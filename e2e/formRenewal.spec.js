@@ -25,6 +25,18 @@ describe('The general form attributes', function () {
   });
 
   it('Should pre-fill the form when renewing', function () {
+    expect(page.form.firstName.getAttribute('value')).toBe('Alumni');
+    expect(page.form.email.getAttribute('value')).toBe('j.wisgerhof@library.uq.edu.au');
+    expect(page.form.alumniGraduated.getAttribute('value')).toBe('2010');
+    expect(page.form.alumniAwards.getAttribute('value')).toBe('Bachelor of IT');
+  });
 
+  it('Should allow the user to renew his/her membership and be taken to the payment page', function () {
+    page.form.alumniPeriod.sendKeys('6 months');
+    // Close select element
+    element.all(by.css('._md-select-menu-container._md-active._md-clickable md-option')).get(0).click();
+
+    page.form.submitButton.click();
+    expect(browser.getCurrentUrl()).toMatch(/received/);
   });
 });
