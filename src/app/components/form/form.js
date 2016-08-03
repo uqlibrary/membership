@@ -144,7 +144,6 @@
       }
 
       promise.then(function (response) {
-        console.log(response);
         $state.go('received', {id: response.id});
         vm.isSubmitting = false;
       }, function (errors) {

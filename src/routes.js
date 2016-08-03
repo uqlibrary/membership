@@ -24,6 +24,10 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/received/:id',
       template: '<membership-received></membership-received>'
     })
+    .state('paymentconfirmation', {
+      url: '/paymentconfirmation',
+      template: '<membership-payment-confirmation></membership-payment-confirmation>'
+    })
     .state('admin', {
       url: '/admin',
       template: '<membership-admin></membership-admin>'

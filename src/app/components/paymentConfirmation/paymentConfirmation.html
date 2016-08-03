@@ -1,0 +1,25 @@
+<md-content layout-padding
+            flex="100" flex-gt-md="80" flex-offset-gt-md="10">
+  <h1 class="md-display-1">UQ Library Membership</h1>
+
+  <md-card>
+    <md-card-content>
+      <p ng-if="vm.processed">
+        <span class="md-title">
+          Thank you, your payment has been received. You will be notified by email when your application has been processed
+          by Library staff.
+        </span>
+
+        <span class="md-subhead receipt-number" ng-if="vm.paymentDetails.paymentReceipt">
+          <br /><br />
+          <strong>Receipt number: </strong> {{vm.paymentDetails.paymentReceipt}}
+        </span>
+      </p>
+
+      <p class="md-title" ng-hide="vm.processed">
+        <md-progress-circular md-mode="indeterminate" md-diameter="18"></md-progress-circular>
+        <span style="padding-left: 30px">Processing..</span>
+      </p>
+    </md-card-content>
+  </md-card>
+</md-content>
