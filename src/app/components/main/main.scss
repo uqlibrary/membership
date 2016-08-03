@@ -1,7 +1,15 @@
-app {
+membership-app {
   h2 {
     button.md-button {
       text-transform: none;
+    }
+  }
+
+  md-card {
+    padding: 16px;
+
+    .md-headline {
+      margin-top: 0;
     }
   }
 }

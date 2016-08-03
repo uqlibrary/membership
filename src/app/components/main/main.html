@@ -7,15 +7,16 @@
     type of membership you wish to apply for:
   </span>
 
-  <div layout="row" layout-sm="column" layout-wrap layout-padding>
-    <div flex="100" flex-gt-sm="50" ng-repeat="type in vm.membershipTypes">
-      <h2 class="md-headline">{{type.title}}
-        <button class="md-button md-primary" ng-click="vm.navigateToForm(type)">
+  <div layout="row" layout-sm="column" layout-wrap>
+    <md-card flex="100" flex-gt-sm="45" ng-repeat="type in vm.membershipTypes">
+      <div layout="row" layout-align="space-between center">
+        <h2 class="md-headline" flex="1">{{type.title}}</h2>
+        <md-button class="md-secondary md-raised" ng-click="vm.navigateToForm(type)">
           Apply
           <md-icon class="material-icons apply">keyboard_tab</md-icon>
-        </button>
-      </h2>
+        </md-button>
+      </div>
       <span ng-bind-html="type.description" class="md-body-1">{{type.description}}</span>
-    </div>
+    </md-card>
   </div>
 </md-content>
