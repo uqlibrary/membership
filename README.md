@@ -1,5 +1,8 @@
 # uqlapp-membership
 
+[![Dependency Status](https://david-dm.org/uqlibrary/uqlapp-membership.svg)](https://david-dm.org/uqlibrary/uqlapp-membership)
+[![Dev Dependency Status](https://david-dm.org/uqlibrary/uqlapp-membership/dev-status.svg)](https://david-dm.org/uqlibrary/uqlapp-membership?type=dev)
+
 The main membership application located at https://app.library.uq.edu.au/membership/. Consists 
 of two parts: public and restricted. The restricted admin panel can be found 
 at https://app.library.uq.edu.au/membership/admin.
